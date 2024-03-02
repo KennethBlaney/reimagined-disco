@@ -160,3 +160,5 @@ cython_debug/
 .idea/
 
 traceback.txt
+errors.txt
+log.txt
