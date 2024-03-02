@@ -11,17 +11,28 @@ label start:
     $ pd = PlayerData()
     $ pd.reset_qualities()
 
-    scene bg room
-    show eileen happy
+    # Set up premise
+    scene black
+    "You awaken!"
+    scene space
+    "You are an unknown, mysterious, alien entity on this world."
+    "Your motives are understood only by yourself. They cannot be understood by mere mortal men."
+    scene cultist
+    "Not even the cultists who wish to pay you tribute can comprehend the vastness of your intellect."
 
-    "Welcome to the game. You are an eldrich monster. Everytime you define something you lose power."
-    $ pd.set_quality("name", renpy.input("What is your name?"))
-
+    # Set the creature's name.
+    $ pd.set_quality("name", renpy.input("So that your cult may worship you more effectively, what is your name?"))
     if not pd.qualities["name"]:
         $pd.set_quality("name", "The Beast that Hath No Name")
-        "Good try not choosing a name. But knowing you have no name is still knowledge about you."
+        "Bold move! By not choosing a name, you resist being pinned down by knowledge.""
+        "But knowing that you defy naming is still knowledge about you."
     else:
-        "[pd.get_quality('name')] is quite the fearsome name, but unfortunately being named defines something about you."
+        "[pd.get_quality('name')] is quite the fearsome name."
+        "But unfortunately being named defines something about you and harms your mythos power."
+    
+    # Set up danger
+    "[pd.get_quality('name')], guard your mythos power and don't let yourself be defined by anything."
+    "Investigators will stop at nothing to learn your secrets, discover your weaknesses and remove you from this world."
     jump scene_choosing
     return
 
@@ -30,19 +41,20 @@ label scene_choosing:
     $ pd.set_qualities_from_elimination()
     $ pd.calculate_mythos()
 
-    $ import urllib.parse
+
     $ temp_cand = ", ".join(pd.candidate_names)
     "Remaining mythos power: [pd.mythos]"
-    "Remaining Candidates: [temp_cand]"
+    # "Remaining Candidates: [temp_cand]"
 
     $ next_scene = scene_chooser(pd)
+    scene dungeon
     jump expression next_scene
     return
 
 
 
 label fins_selector:
-    scene bg room
+    
     "You made it to the fins screen"
     menu:
         "Do you have fins?"
@@ -59,7 +71,7 @@ label fins_selector:
     return
 
 label gills_selector:
-    scene bg room
+     
     "You made it to the gills screen"
     menu:
         "Do you have gills?"
@@ -76,7 +88,7 @@ label gills_selector:
     return
 
 label lungs_selector:
-    scene bg room
+     
     "You made it to the lungs screen"
     menu:
         "Do you have lungs?"
@@ -93,7 +105,7 @@ label lungs_selector:
     return
 
 label venom_selector:
-    scene bg room
+     
     "You made it to the venom screen"
     menu:
         "Do you have venom?"
@@ -110,7 +122,7 @@ label venom_selector:
     return
 
 label shell_selector:
-    scene bg room
+     
     "You made it to the shell screen"
     menu:
         "Do you have shell?"
@@ -127,7 +139,7 @@ label shell_selector:
     return
 
 label claws_selector:
-    scene bg room
+     
     "You made it to the claws screen"
     menu:
         "Do you have claws?"
@@ -144,7 +156,7 @@ label claws_selector:
     return
 
 label elec_selector:
-    scene bg room
+     
     "You made it to the elec screen"
     menu:
         "Do you have elec?"
@@ -161,7 +173,7 @@ label elec_selector:
     return
 
 label teeth_selector:
-    scene bg room
+     
     "You made it to the teeth screen"
     menu:
         "Do you have teeth?"
@@ -178,7 +190,7 @@ label teeth_selector:
     return
 
 label acid_selector:
-    scene bg room
+     
     "You made it to the acid screen"
     menu:
         "Do you have acid?"
@@ -195,7 +207,7 @@ label acid_selector:
     return
 
 label tentacles_selector:
-    scene bg room
+     
     "You made it to the tentacles screen"
     menu:
         "Do you have tentacles?"
@@ -212,7 +224,7 @@ label tentacles_selector:
     return
 
 label spines_selector:
-    scene bg room
+     
     "You made it to the spines screen"
     menu:
         "Do you have spines?"
@@ -229,7 +241,7 @@ label spines_selector:
     return
 
 label sonar_selector:
-    scene bg room
+     
     "You made it to the sonar screen"
     menu:
         "Do you have sonar?"
@@ -246,6 +258,6 @@ label sonar_selector:
     return
 
 label ending:
-    scene bg room
+     
     "You are a [pd.animal]"
     return
