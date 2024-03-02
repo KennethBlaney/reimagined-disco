@@ -29,7 +29,7 @@ label scene_choosing:
     $ pd.compare_to_candidates()
     $ pd.set_qualities_from_elimination()
     $ pd.calculate_mythos()
-
+    # TODO: Create display code
     $ import urllib.parse
     $ temp_cand = ", ".join(pd.candidate_names)
     "Remaining mythos power: [pd.mythos]"
