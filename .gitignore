@@ -164,3 +164,4 @@ errors.txt
 log.txt
 game/saves/
 game/cache/
+*.rpyc
