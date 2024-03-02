@@ -43,6 +43,7 @@ label scene_choosing:
     # TODO: Create display code
     $ temp_cand = ", ".join(pd.candidate_names)
     "Remaining mythos power: [pd.mythos]"
+    " "
     # "Remaining Candidates: [temp_cand]"
 
     $ next_scene = scene_chooser(pd)
@@ -241,18 +242,19 @@ label spines_selector:
 
 label sonar_selector:
      
-    "You made it to the sonar screen"
+    "Something triggers in your vast brain which makes you believe that an investigator is entering your domain."
     menu:
-        "Do you have sonar?"
+        "How do you avoid the investigator and prevent them from learning about you?"
 
-        "Yes":
+        "I use my echolocation to keep tabs on them and always move to another room.":
             $pd.set_quality("sonar", True)
-            "Ooh... scary sonar."
+            "Using your powerful echolocation, you manage to avoid the investigation."
 
-        "No":
+        "I use changes in the current of the water to figure out where the investigator is":
             $pd.set_quality("sonar", False)
-            "Good to know. No sonar."
+            "As the investigator moves around your temple, you are able to sense when they get close so you can avoid them."
 
+    "The investigator completes their search and seems to find no trace of you."
     jump scene_choosing
     return
 
