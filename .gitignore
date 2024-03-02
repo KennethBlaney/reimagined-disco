@@ -162,3 +162,5 @@ cython_debug/
 traceback.txt
 errors.txt
 log.txt
+game/saves/
+game/cache/
