@@ -40,8 +40,7 @@ label scene_choosing:
     $ pd.compare_to_candidates()
     $ pd.set_qualities_from_elimination()
     $ pd.calculate_mythos()
-
-
+    # TODO: Create display code
     $ temp_cand = ", ".join(pd.candidate_names)
     "Remaining mythos power: [pd.mythos]"
     # "Remaining Candidates: [temp_cand]"
