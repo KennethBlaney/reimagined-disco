@@ -1,0 +1,12 @@
+{
+  "add_from": true,
+  "android_build": "Release",
+  "build_update": false,
+  "force_recompile": true,
+  "packages": [
+    "pc"
+  ],
+  "renamed_all": true,
+  "renamed_steam": true,
+  "tutorial": false
+}
