@@ -22,7 +22,7 @@ label start:
     # Set the creature's name.
     $ pd.set_quality("name", renpy.input("So that your cult may worship you more effectively, what is your name?"))
     if not pd.qualities["name"]:
-        $pd.set_quality("name", "The Beast that Hath No Name")
+        $pd.set_quality("name", "Beast that Hath No Name")
         "Bold move! By not choosing a name, you resist being pinned down by knowledge."
         "But knowing that you defy naming is still knowledge about you."
     else:
@@ -146,70 +146,102 @@ label shell_selector:
 
 label claws_selector:
      
-    "You made it to the claws screen"
+    "The investigators are looking around your home, but they've made the fatal mistake of not looking up."
     menu:
-        "Do you have claws?"
+        "This is the opportunity to pounce on one of them."
 
-        "Yes":
-            $pd.set_quality("claws", True)
-            "Ooh... scary claws."
+        "They will never know what hit them. Attack now." if pd.get_quality("claws") is not False:
+            if pd.get_revealed("claws"):
+                "You attempt to grab an investigator between your claws."
+                "The investigator is too quick and leaps out of the way, closing back in and holding your pincers together."
+                "The investigators attack, attaching thick belts around your claws."
+                "With your claws stuck closed the investigators are on you quickly. They cast an exorcism ritual which banishes you from the Earth."
+                jump game_over
+            else:
+                "You attempt to grab an investigator with your claws."
+                $pd.investigators_remaining -= 1
+                "Frozen with fear, the investigator stands no chance. You clamp around their neck and crush their windpipe."
+                "Others make motions to help, but are quickly demoralized as you pull and rip their friend in two."
+                $pd.set_quality("claws", True)
+                $pd.set_revealed("claws", True)
+                jump scene_choosing
 
-        "No":
-            $pd.set_quality("claws", False)
-            "Good to know. No claws."
+        "Drip some corrosive acid on them from above" if pd.get_quality("acid") is not False:
+            if pd.get_revealed("acid"):
+                "You drip your acid on the unsuspecting investigator."
+                "The investigator quickly reaches into their bag and spreads baking soda on the wound, neutralizing the acid."
+                "With your acid unable to digest your prey, the investigators are on you quickly. They cast an exorcism ritual which banishes you from the Earth."
+                jump game_over
+            else:
+                "You spray your acid on the unsuspecting investigator."
+                $pd.investigators_remaining -= 1
+                "The rest react in horror as their friend is dissolved into a pile of protein rich goo and quickly run away."
+                $pd.set_quality("acid", True)
+                $pd.set_revealed("acid", True)
+                jump scene_choosing
+
+        "I don't think I can kill them safely.":
+            if pd.get_quality('claws') is None:
+                $pd.set_quality("claws", False)
+            if pd.get_quality('acid') is None:
+                $pd.set_quality("acid", False)
+            "You remain hidden and the investigators pass you by."
+            jump scene_choosing
+
+        "Attack some other way.":
+            $jump fight_the_investigators
 
     jump scene_choosing
     return
 
 label elec_selector:
      
-    "You made it to the elec screen"
+    "A group of cultists approach you asking you for a display of your might. They request a gift of power."
     menu:
-        "Do you have elec?"
-
-        "Yes":
+        "They dare? Electrocute them ironically.":
+            "Using your naturally generated electricity, you send a charge through the floor."
+            "The cultists convulse in place. Their convulsing seems to become a sort of ritualistic dance to pay you tribute."
             $pd.set_quality("elec", True)
-            "Ooh... scary elec."
+            jump scene_choosing
 
-        "No":
+        "Refuse. It is wrong of them to ask as you don't control electricity."
+            "Apologetically, your cultists back away believing they have some how offended you."
             $pd.set_quality("elec", False)
-            "Good to know. No elec."
+            jump scene_choosing
 
     jump scene_choosing
     return
 
 label teeth_selector:
      
-    "You made it to the teeth screen"
+    "A cultist calls out to you. By his garb, he appears to be a leader in your cult."
+    "He says, \"Oh wise and powerful [pd.get_quality('name')]. Grant me a tooth from your most terrifying maw so that we may worship you better.\""
     menu:
-        "Do you have teeth?"
+        "Do you have a tooth to spare to this pitiful mortal?"
 
         "Yes":
             $pd.set_quality("teeth", True)
-            "Ooh... scary teeth."
+            "You gape open your mouth as the cultist cautiously approaches."
+            "The cultist reaches in and extracts a vicious looking tooth to bring back."
+            "He seems elated at the opportunity to share this relic with the cult."
+
+        "Yes, but only for the purpose of eating him":
+            $pd.set_quality("teeth", True)
+            "You gape open your mouth as the cultist cautiously approaches."
+            "As the cultist reaches for a tooth, you lunge forward and devour him."
+            "The cultist yelps in surprise, but then in ecstasy"
+            "\"My life to help nourish the dark lord. Thank you [pd.get_quality('name')]!\""
 
         "No":
             $pd.set_quality("teeth", False)
-            "Good to know. No teeth."
+            "The cult leader bows. Dejected, but understanding."
+            "He leaves empty handed, but seemingly happy for the opportunity to have met you."
 
     jump scene_choosing
     return
 
 label acid_selector:
-     
-    "You made it to the acid screen"
-    menu:
-        "Do you have acid?"
-
-        "Yes":
-            $pd.set_quality("acid", True)
-            "Ooh... scary acid."
-
-        "No":
-            $pd.set_quality("acid", False)
-            "Good to know. No acid."
-
-    jump scene_choosing
+    jump claws_selector
     return
 
 label tentacles_selector:
