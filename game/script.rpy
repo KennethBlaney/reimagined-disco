@@ -45,7 +45,6 @@ label scene_choosing:
     # TODO: Create display code
     $ temp_cand = ", ".join(pd.candidate_names)
     "Remaining mythos power: [pd.mythos]"
-    " "
     # "Remaining Candidates: [temp_cand]"
 
     $ next_scene = scene_chooser(pd)
@@ -57,53 +56,52 @@ label scene_choosing:
 
 label fins_selector:
     
-    "You made it to the fins screen"
+    "The investigators have you surrounded, but they don't know it yet. Your only hope is to escape or to hide."
     menu:
-        "Do you have fins?"
+        "What do you do to survive?"
 
-        "Yes":
+        "Use my powerful fins to escape.":
             $pd.set_quality("fins", True)
-            "Ooh... scary fins."
+            "You flip your fins and manage to swim past one of the investigators. The puny human is stunned by your appearance and you easily escape."
+            jump scene_choosing
 
-        "No":
+        "Hide in the shadows and hope they pass you by.":
             $pd.set_quality("fins", False)
             "Good to know. No fins."
+            jump scene_choosing
 
-    jump scene_choosing
+        "Hide in the shadows and ambush them.":
+            "You hide in the shadows and take your opportunity"
+            jump fight_the_investigators
+
     return
 
 label gills_selector:
      
-    "You made it to the gills screen"
+    "The investigators believe that you might succumb to poisonous gas released into your lair."
     menu:
-        "Do you have gills?"
+        "What do you do to survive the poison?"
 
-        "Yes":
-            $pd.set_quality("gills", True)
+        "Take a deep breath. I have impressive lung capacity":
+            $pd.set_quality("gills", False)
+            $pd.set_quality("lungs", True)
             "Ooh... scary gills."
 
-        "No":
+        "Jump into a pool of water. The poison gas can't get me there.":
+            $pd.set_quality("gills", True)
+            $pd.set_quality("lungs", False)
+            "Good to know. No gills."
+
+        "I actually don't need to breathe, so the gas won't affect me."
             $pd.set_quality("gills", False)
+            $pd.set_quality("lungs", False)
             "Good to know. No gills."
 
     jump scene_choosing
     return
 
 label lungs_selector:
-     
-    "You made it to the lungs screen"
-    menu:
-        "Do you have lungs?"
-
-        "Yes":
-            $pd.set_quality("lungs", True)
-            "Ooh... scary lungs."
-
-        "No":
-            $pd.set_quality("lungs", False)
-            "Good to know. No lungs."
-
-    jump scene_choosing
+    jump gills_selector
     return
 
 label venom_selector:
@@ -125,19 +123,26 @@ label venom_selector:
 
 label shell_selector:
      
-    "You made it to the shell screen"
+    "Look out! The investigators have ambushed you and they've brought automatic weapons."
     menu:
-        "Do you have shell?"
+        "They try to spray you with bullets. What do you do?"
 
-        "Yes":
+        "Nothing. I have a thick shell and their bullets don't scare me.":
             $pd.set_quality("shell", True)
             "Ooh... scary shell."
 
-        "No":
+        "I'm nimble and flexible enough to avoid their bullets.":
             $pd.set_quality("shell", False)
             "Good to know. No shell."
 
-    jump scene_choosing
+    menu:
+        "The investigators are stunned their attack doesn't work. Do you seize the opportunity to attack?"
+
+        "Yes. Make them regret attacking you.":
+            jump fight_the_investigators
+        "No. Staying alive is more important.":
+            "They say 'Discretion is the better part of valor' and you know now is not the time to attack."
+            jump scene_choosing
     return
 
 label claws_selector:
@@ -280,14 +285,107 @@ label fight_the_investigators:
                 $pd.set_quality("teeth", True)
                 $pd.set_revealed("teeth", True)
                 jump scene_choosing
-        "Dunno":
-            "Well die then"
-            jump game_over
 
-label ending:
+        "If you can inject your potent venom into an investigator they will certainly die a painful death." if pd.get_quality("venom") is not False:
+            if pd.get_revealed("venom"):
+                "You manage to inject your venom into the investigator's veins."
+                "The investigator, prepared for this, takes out a syringe and injects it into their neck."
+                "With your venom neutralized the investigators are on you quickly. They cast an exorcism ritual which banishes you from the Earth"
+                jump game_over
+            else:
+                "You manage to inject your venom into the investigator's veins."
+                $pd.investigators_remaining -= 1
+                "They start convulsing and foaming from the mouth. The rest first make motions to save their friend, but retreat to avoid meeting a similar fate."
+                $pd.set_quality("venom", True)
+                $pd.set_revealed("venom", True)
+                jump scene_choosing
+
+        "Reach out and crush an investigator with your massive pincer claws." if pd.get_quality("claws") is not False:
+            if pd.get_revealed("claws"):
+                "You attempt to grab an investigator between your claws."
+                "The investigator is too quick and leaps out of the way, closing back in and holding your pincers closed."
+                "The investigators attack, attaching thick belts around your claws."
+                "With your claws stuck closed the investigators are on you quickly. They cast an exorcism ritual which banishes you from the Earth."
+                jump game_over
+            else:
+                "You attempt to grab an investigator between your claws."
+                $pd.investigators_remaining -= 1
+                "Frozen with fear, the investigator stands no chance. You clamp around their neck and crush their windpipe."
+                "Others make motions to help, but are quickly demoralized as your clamp harder and decapitate their friend."
+                $pd.set_quality("claws", True)
+                $pd.set_revealed("claws", True)
+                jump scene_choosing
+
+        "The floor is wet. The perfect opportunity to electrocute one of them." if pd.get_quality("elec") is not False:
+            if pd.get_revealed("elec"):
+                "Using your naturally generated electricity, you send a charge through the floor."
+                "The investigators are unharmed. Stunned you realize they have prepared themselves with rubber soled shoes."
+                "In your ironic state of shock, the investigators are on you quickly. They cast an exorcism ritual which banishes you from the Earth."
+                jump game_over
+            else:
+                "Using your naturally generated electricity, you send a charge through the floor."
+                $pd.investigators_remaining -= 1
+                "The lead investigator convulses in place as the others quickly back away."
+                "Smoke rises from the investigator as their flesh burns. The others, repulsed by the smell, scatter."
+                $pd.set_quality("elec", True)
+                $pd.set_revealed("elec", True)
+                jump scene_choosing
+
+        "Using acid will make this particular investigator easier to digest later." if pd.get_quality("acid") is not False:
+            if pd.get_revealed("acid"):
+                "You spray your acid on the unsuspecting investigator."
+                "The investigator quickly reaches into their bag and spreads baking soda on the wound, neutralizing the acid."
+                "With your acid unable to digest your prey, the investigators are on you quickly. They cast an exorcism ritual which banishes you from the Earth."
+                jump game_over
+            else:
+                "You spray your acid on the unsuspecting investigator."
+                $pd.investigators_remaining -= 1
+                "The rest react in horror as their friend is dissolved into a pile of protein rich goo and quickly run away."
+                $pd.set_quality("acid", True)
+                $pd.set_revealed("acid", True)
+                jump scene_choosing
+
+        "" if pd.get_quality("tentacles") is not False:
+            if pd.get_revealed("tentacles"):
+                "You attack."
+                "They kill you."
+                jump game_over
+            else:
+                "You attack."
+                $pd.investigators_remaining -= 1
+                "he dies."
+                $pd.set_quality("tentacles", True)
+                $pd.set_revealed("tentacles", True)
+                jump scene_choosing
+
+        "spines attack" if pd.get_quality("spines") is not False:
+            if pd.get_revealed("spines"):
+                "You attack."
+                "They kill you."
+                jump game_over
+            else:
+                "You attack."
+                $pd.investigators_remaining -= 1
+                "he dies."
+                $pd.set_quality("spines", True)
+                $pd.set_revealed("spines", True)
+                jump scene_choosing
+
+        "On second thought. I'm just going to hide and watch them.":
+            "The investigators complete their search and seems to find no trace of you."
+            jump scene_choosing
+
+label non_mythos_ending:
     "You are a [pd.animal]"
     return
 
 label game_over:
     "You died"
     return
+
+label winning:
+    "You destroy the Earth"
+    return
+
+label mixed_ending:
+    "The investigators are dead or run off, but you are just a [pd.animal], so the world survives."
