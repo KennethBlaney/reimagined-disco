@@ -133,11 +133,11 @@ label shell_selector:
 
         "Nothing. I have a thick shell and their bullets don't scare me.":
             $pd.set_quality("shell", True)
-            "Ooh... scary shell."
+            "The investigators open fire agains you, but the bullets plink harmlessly off your thick shell."
 
         "I'm nimble and flexible enough to avoid their bullets.":
             $pd.set_quality("shell", False)
-            "Good to know. No shell."
+            "As the bullets rip through the air, you lithe form drifts around them easily."
 
     menu:
         "The investigators are stunned their attack doesn't work. Do you seize the opportunity to attack?"
