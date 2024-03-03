@@ -305,18 +305,18 @@ label fight_the_investigators:
                 $pd.set_revealed("venom", True)
                 jump scene_choosing
 
-        "My massive pincer claws" if pd.get_quality("claws") is not False:
+        "My massive, sharp claws" if pd.get_quality("claws") is not False:
             if pd.get_revealed("claws"):
                 "You attempt to grab an investigator between your claws."
-                "The investigator is too quick and leaps out of the way, closing back in and holding your pincers closed."
+                "The investigator is too quick and leaps out of the way, closing back in and holding your pincers together."
                 "The investigators attack, attaching thick belts around your claws."
                 "With your claws stuck closed the investigators are on you quickly. They cast an exorcism ritual which banishes you from the Earth."
                 jump game_over
             else:
-                "You attempt to grab an investigator between your claws."
+                "You attempt to grab an investigator with your claws."
                 $pd.investigators_remaining -= 1
                 "Frozen with fear, the investigator stands no chance. You clamp around their neck and crush their windpipe."
-                "Others make motions to help, but are quickly demoralized as your clamp harder and decapitate their friend."
+                "Others make motions to help, but are quickly demoralized as you pull and rip their friend in two."
                 $pd.set_quality("claws", True)
                 $pd.set_revealed("claws", True)
                 jump scene_choosing
