@@ -92,7 +92,7 @@ label gills_selector:
             $pd.set_quality("lungs", False)
             "Good to know. No gills."
 
-        "I actually don't need to breathe, so the gas won't affect me."
+        "I actually don't need to breathe, so the gas won't affect me.":
             $pd.set_quality("gills", False)
             $pd.set_quality("lungs", False)
             "Good to know. No gills."
