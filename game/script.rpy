@@ -54,19 +54,21 @@ label scene_choosing:
 
 
 label fins_selector:
-    
     "The investigators have you surrounded, but they don't know it yet. Your only hope is to escape or to hide."
     menu:
         "What do you do to survive?"
 
         "Use my powerful fins to escape.":
             $pd.set_quality("fins", True)
-            "You flip your fins and manage to swim past one of the investigators. The puny human is stunned by your appearance and you easily escape."
+            "You flip your fins and manage to swim past one of the investigators."
+            "The puny human is stunned by your appearance and you easily escape."
             jump scene_choosing
 
         "Hide in the shadows and hope they pass you by.":
             $pd.set_quality("fins", False)
-            "Good to know. No fins."
+            "Hidden in the shadows the investigators don't even know you are there."
+            "You hear them converge and talk to each other for a bit before leaving together."
+            "You are safe for now."
             jump scene_choosing
 
         "Hide in the shadows and ambush them.":
@@ -84,17 +86,20 @@ label gills_selector:
         "Take a deep breath. I have impressive lung capacity":
             $pd.set_quality("gills", False)
             $pd.set_quality("lungs", True)
-            "Ooh... scary gills."
+            "You take a deep breath in before the poison gets to you."
+            "In a mere half hour, the heavy poison gas settles to the ground. You survive the investigators weak attempt on your life."
 
         "Jump into a pool of water. The poison gas can't get me there.":
             $pd.set_quality("gills", True)
             $pd.set_quality("lungs", False)
-            "Good to know. No gills."
+            "You leap into a nearby pool breathing the water through your gills."
+            "The poison gas can't penetrate the water leaving you unharmed."
 
         "I actually don't need to breathe, so the gas won't affect me.":
             $pd.set_quality("gills", False)
             $pd.set_quality("lungs", False)
-            "Good to know. No gills."
+            "The gas floods into your chamber but you sit motionless."
+            "The investigators will have to try harder than that to kill you."
 
     jump scene_choosing
     return
@@ -104,7 +109,7 @@ label lungs_selector:
     return
 
 label venom_selector:
-     
+     # TODO: finish this scene
     "You made it to the venom screen"
     menu:
         "Do you have venom?"
@@ -121,7 +126,7 @@ label venom_selector:
     return
 
 label shell_selector:
-     
+     # TODO: finish this scene
     "Look out! The investigators have ambushed you and they've brought automatic weapons."
     menu:
         "They try to spray you with bullets. What do you do?"
@@ -189,7 +194,7 @@ label claws_selector:
             jump scene_choosing
 
         "Attack some other way.":
-            $jump fight_the_investigators
+            jump fight_the_investigators
 
     jump scene_choosing
     return
@@ -204,7 +209,7 @@ label elec_selector:
             $pd.set_quality("elec", True)
             jump scene_choosing
 
-        "Refuse. It is wrong of them to ask as you don't control electricity."
+        "Refuse. It is wrong of them to ask as you don't control electricity.":
             "Apologetically, your cultists back away believing they have some how offended you."
             $pd.set_quality("elec", False)
             jump scene_choosing
@@ -451,3 +456,4 @@ label winning:
 
 label mixed_ending:
     "The investigators are dead or run off, but you are just a [pd.animal], so the world survives."
+    return
