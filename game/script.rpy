@@ -24,7 +24,7 @@ label start:
     $ pd.set_quality("name", renpy.input("So that your cult may worship you more effectively, what is your name?"))
     if not pd.qualities["name"]:
         $pd.set_quality("name", "The Beast that Hath No Name")
-        "Bold move! By not choosing a name, you resist being pinned down by knowledge.""
+        "Bold move! By not choosing a name, you resist being pinned down by knowledge."
         "But knowing that you defy naming is still knowledge about you."
     else:
         "[pd.get_quality('name')] is quite the fearsome name."
@@ -32,7 +32,9 @@ label start:
     
     # Set up danger
     "[pd.get_quality('name')], guard your mythos power and don't let yourself be defined by anything."
-    "Investigators will stop at nothing to learn your secrets, discover your weaknesses and remove you from this world."
+    scene investigators
+    "Unfortunately, there is a group of investigators who will stop at nothing to learn your secrets, discover your weaknesses and remove you from this world."
+    "Protect yourself from them so that you may rise from your palace under the waves and dominate the Earth."
     jump scene_choosing
     return
 
@@ -249,16 +251,43 @@ label sonar_selector:
         "I use my echolocation to keep tabs on them and always move to another room.":
             $pd.set_quality("sonar", True)
             "Using your powerful echolocation, you manage to avoid the investigation."
+            "The investigators complete their search and seems to find no trace of you."
 
         "I use changes in the current of the water to figure out where the investigator is":
             $pd.set_quality("sonar", False)
             "As the investigator moves around your temple, you are able to sense when they get close so you can avoid them."
+            "The investigators complete their search and seems to find no trace of you."
 
-    "The investigator completes their search and seems to find no trace of you."
+        "I lie in wait to ambush the investigators":
+            "You hide in the shadows and take your opportunity"
+            jump fight_the_investigators
+
     jump scene_choosing
     return
 
+label fight_the_investigators:
+    menu:
+
+        "Lunge out and bite down on an investigator using my ferocious teeth" if pd.get_quality("teeth") is not False:
+            if pd.get_revealed("teeth"):
+                "You lunge at the investigator, but they are ready for your attack having fallen for it once before."
+                "Before you can change tactics, the investigators are on you, casting an exorcism ritual which banishes you from the Earth."
+                jump game_over
+            else:
+                "You lunge at the investigator crunching into them with your deadly teeth."
+                $pd.investigators_remaining -= 1
+                "The investigator quickly bleeds out and dies as the rest scatter to escape you."
+                $pd.set_quality("teeth", True)
+                $pd.set_revealed("teeth", True)
+                jump scene_choosing
+        "Dunno":
+            "Well die then"
+            jump game_over
+
 label ending:
-     
     "You are a [pd.animal]"
+    return
+
+label game_over:
+    "You died"
     return
