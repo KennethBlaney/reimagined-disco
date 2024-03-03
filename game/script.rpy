@@ -217,7 +217,7 @@ label teeth_selector:
     "A cultist calls out to you. By his garb, he appears to be a leader in your cult."
     "He says, \"Oh wise and powerful [pd.get_quality('name')]. Grant me a tooth from your most terrifying maw so that we may worship you better.\""
     menu:
-        "Do you have a tooth to spare to this pitiful mortal?"
+        "Do you have a tooth to spare for this pitiful mortal?"
 
         "Yes":
             $pd.set_quality("teeth", True)
@@ -245,24 +245,33 @@ label acid_selector:
     return
 
 label tentacles_selector:
-     
-    "You made it to the tentacles screen"
+    "You sense that the investigators are in the next room over which is connected by a thin, underwater cave."
+    "Will you use your tentacles to reach through the cave and drag away one of the investigators?"
     menu:
-        "Do you have tentacles?"
+        "Do you even have tentacles?"
 
-        "Yes":
+        "Yes, kill one of the investigators":
             $pd.set_quality("tentacles", True)
-            "Ooh... scary tentacles."
+            $pd.set_revealed("tentacles", True)
+            "You reach through the cavern and wrap around one of the investigators legs."
+            "As you drag the investigator to the cave, you meet some resistance as the others try to save their friend."
+            "However, it is of no use. You are too strong for them and rip your victim from their hands."
+            $pd.investigators_remaining -= 1
+            jump scene_choosing
 
-        "No":
+        "Yes, but I don't want to reveal that to the investigators yet":
+            $pd.set_quality("tentacles", True)
+
+        "No, I don't":
             $pd.set_quality("tentacles", False)
-            "Good to know. No tentacles."
 
+    "The investigators poke around the other room noticing the cave, but appear to decide that they can't fit."
+    "Soon enough, they move on."
     jump scene_choosing
     return
 
 label spines_selector:
-     
+     # TODO: Finish this part
     "You made it to the spines screen"
     menu:
         "Do you have spines?"
@@ -383,6 +392,7 @@ label fight_the_investigators:
                 jump scene_choosing
 
         "My constricting tentacles" if pd.get_quality("tentacles") is not False:
+        # TODO: Finish this part
             if pd.get_revealed("tentacles"):
                 "You attack."
                 "They kill you."
@@ -396,6 +406,7 @@ label fight_the_investigators:
                 jump scene_choosing
 
         "My sharp spike" if pd.get_quality("spines") is not False:
+        # TODO: Finish this part
             if pd.get_revealed("spines"):
                 "You attack."
                 "They kill you."
