@@ -271,6 +271,9 @@ label sonar_selector:
 
 label fight_the_investigators:
     scene monster_attack
+    $ pd.compare_to_candidates()
+    $ pd.set_qualities_from_elimination()
+    $ pd.calculate_mythos()
 
     menu:
         "How will you attack the investigators?"

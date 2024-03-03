@@ -126,6 +126,13 @@ class PlayerData:
                            "shell": True,
                            "spines": True,
                            }),
+        AnimalCandidate(**{"name": "stargazer fish",
+                           "fins": True,
+                           "gills": True,
+                           "elec": True,
+                           "spines": True,
+                           "venom": True
+                           }),
         AnimalCandidate(**{"name": "sting ray",
                            "fins": True,
                            "gills": True,
