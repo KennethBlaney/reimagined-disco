@@ -3,7 +3,6 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-
 # The game starts here.
 
 label start:
@@ -14,10 +13,10 @@ label start:
     # Set up premise
     scene black
     "You awaken!"
-    scene space
+    scene stars
     "You are an unknown, mysterious, alien entity on this world."
     "Your motives are understood only by yourself. They cannot be understood by mere mortal men."
-    scene cultist
+    scene cult_ritual
     "Not even the cultists who wish to pay you tribute can comprehend the vastness of your intellect."
 
     # Set the creature's name.
@@ -42,13 +41,13 @@ label scene_choosing:
     $ pd.compare_to_candidates()
     $ pd.set_qualities_from_elimination()
     $ pd.calculate_mythos()
+    scene temple_interior
     # TODO: Create display code
     $ temp_cand = ", ".join(pd.candidate_names)
     "Remaining mythos power: [pd.mythos]"
-    # "Remaining Candidates: [temp_cand]"
+    "Remaining Candidates: [temp_cand]"
 
     $ next_scene = scene_chooser(pd)
-    scene dungeon
     jump expression next_scene
     return
 
@@ -271,9 +270,12 @@ label sonar_selector:
     return
 
 label fight_the_investigators:
-    menu:
+    scene monster_attack
 
-        "Lunge out and bite down on an investigator using my ferocious teeth" if pd.get_quality("teeth") is not False:
+    menu:
+        "How will you attack the investigators?"
+
+        "My ferocious teeth" if pd.get_quality("teeth") is not False:
             if pd.get_revealed("teeth"):
                 "You lunge at the investigator, but they are ready for your attack having fallen for it once before."
                 "Before you can change tactics, the investigators are on you, casting an exorcism ritual which banishes you from the Earth."
@@ -286,7 +288,7 @@ label fight_the_investigators:
                 $pd.set_revealed("teeth", True)
                 jump scene_choosing
 
-        "If you can inject your potent venom into an investigator they will certainly die a painful death." if pd.get_quality("venom") is not False:
+        "My potent venom" if pd.get_quality("venom") is not False:
             if pd.get_revealed("venom"):
                 "You manage to inject your venom into the investigator's veins."
                 "The investigator, prepared for this, takes out a syringe and injects it into their neck."
@@ -300,7 +302,7 @@ label fight_the_investigators:
                 $pd.set_revealed("venom", True)
                 jump scene_choosing
 
-        "Reach out and crush an investigator with your massive pincer claws." if pd.get_quality("claws") is not False:
+        "My massive pincer claws" if pd.get_quality("claws") is not False:
             if pd.get_revealed("claws"):
                 "You attempt to grab an investigator between your claws."
                 "The investigator is too quick and leaps out of the way, closing back in and holding your pincers closed."
@@ -316,7 +318,7 @@ label fight_the_investigators:
                 $pd.set_revealed("claws", True)
                 jump scene_choosing
 
-        "The floor is wet. The perfect opportunity to electrocute one of them." if pd.get_quality("elec") is not False:
+        "My electricity powers" if pd.get_quality("elec") is not False:
             if pd.get_revealed("elec"):
                 "Using your naturally generated electricity, you send a charge through the floor."
                 "The investigators are unharmed. Stunned you realize they have prepared themselves with rubber soled shoes."
@@ -331,7 +333,7 @@ label fight_the_investigators:
                 $pd.set_revealed("elec", True)
                 jump scene_choosing
 
-        "Using acid will make this particular investigator easier to digest later." if pd.get_quality("acid") is not False:
+        "My corrosive acid" if pd.get_quality("acid") is not False:
             if pd.get_revealed("acid"):
                 "You spray your acid on the unsuspecting investigator."
                 "The investigator quickly reaches into their bag and spreads baking soda on the wound, neutralizing the acid."
@@ -345,7 +347,7 @@ label fight_the_investigators:
                 $pd.set_revealed("acid", True)
                 jump scene_choosing
 
-        "" if pd.get_quality("tentacles") is not False:
+        "My constricting tentacles" if pd.get_quality("tentacles") is not False:
             if pd.get_revealed("tentacles"):
                 "You attack."
                 "They kill you."
@@ -358,7 +360,7 @@ label fight_the_investigators:
                 $pd.set_revealed("tentacles", True)
                 jump scene_choosing
 
-        "spines attack" if pd.get_quality("spines") is not False:
+        "My sharp spike" if pd.get_quality("spines") is not False:
             if pd.get_revealed("spines"):
                 "You attack."
                 "They kill you."

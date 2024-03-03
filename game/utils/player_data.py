@@ -1,3 +1,4 @@
+from copy import copy
 from dataclasses import dataclass
 
 
@@ -40,7 +41,7 @@ class PlayerData:
                  "spines": None,
                  "sonar": None,
                  }
-    revealed = qualities
+    revealed = copy(qualities)
 
     start_candidates = [
         AnimalCandidate(**{"name": "clam",
@@ -189,8 +190,8 @@ class PlayerData:
                           "spines": None,
                           "sonar": None,
                           }
-        self.revealed = self.qualities
-        self.candidates = self.start_candidates
+        self.revealed = copy(self.qualities)
+        self.candidates = self.start_candidates[:]
         self.candidate_names = [item.get_quality('name') for item in self.candidates]
 
     def calculate_mythos(self) -> None:
