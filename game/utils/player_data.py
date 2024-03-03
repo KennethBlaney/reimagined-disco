@@ -247,7 +247,7 @@ class PlayerData:
             anon_candidates.append(candidate)
         for i, candidate in enumerate(anon_candidates):
             for j, candidate2 in enumerate(anon_candidates):
-                if i == j:
+                if i >= j:
                     continue
                 if candidate == candidate2:
-                    print(f"Candidate collision on {i} and {j}")
+                    print(f"Candidate collision on {self.candidates[i]} and {self.candidates[j]}")
