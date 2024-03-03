@@ -272,18 +272,27 @@ label tentacles_selector:
 
 label spines_selector:
      # TODO: Finish this part
-    "You made it to the spines screen"
+    "You feel the investigators walking in the room above you. Unbeknownst to them, you are hiding in the muddy floor below."
+    "A surprise attack with a sharp spikey part of your body could impale an investigator easily."
     menu:
-        "Do you have spines?"
+        "Attack with a spike?"
 
-        "Yes":
+        "Yes, kill one of the investigators":
             $pd.set_quality("spines", True)
-            "Ooh... spines teeth."
+            $pd.set_revealed("spines", True)
+            "You sense the foot falls of an investigator and time your spike perfectly to jut though their foot."
+            "The investigator falls to the ground writhing in pain giving you the opportunity to impale them a second time through the torso."
+            "The other investigators shriek in fright and scatter into other rooms of the temple."
+            $pd.investigators_remaining -= 1
+            jump scene_choosing
 
-        "No":
+        "No, keep my spikes a secret for now.":
+            $pd.set_quality("spines", True)
+
+        "No. I don't have any spikes like that.":
             $pd.set_quality("spines", False)
-            "Good to know. No spines."
 
+    "Clearly feeling uncomfortable walking on the mud of this room, the investigators quickly move through to elsewhere in the temple."
     jump scene_choosing
     return
 
@@ -347,14 +356,13 @@ label fight_the_investigators:
                 jump scene_choosing
 
         "My massive, sharp claws" if pd.get_quality("claws") is not False:
+            "You attempt to grab an investigator between your claws."
             if pd.get_revealed("claws"):
-                "You attempt to grab an investigator between your claws."
                 "The investigator is too quick and leaps out of the way, closing back in and holding your pincers together."
                 "The investigators attack, attaching thick belts around your claws."
                 "With your claws stuck closed the investigators are on you quickly. They cast an exorcism ritual which banishes you from the Earth."
                 jump game_over
             else:
-                "You attempt to grab an investigator with your claws."
                 $pd.investigators_remaining -= 1
                 "Frozen with fear, the investigator stands no chance. You clamp around their neck and crush their windpipe."
                 "Others make motions to help, but are quickly demoralized as you pull and rip their friend in two."
@@ -363,28 +371,26 @@ label fight_the_investigators:
                 jump scene_choosing
 
         "My electricity powers" if pd.get_quality("elec") is not False:
+            "Using your naturally generated electricity, you send a charge through the floor."
             if pd.get_revealed("elec"):
-                "Using your naturally generated electricity, you send a charge through the floor."
                 "The investigators are unharmed. Stunned you realize they have prepared themselves with rubber soled shoes."
                 "In your ironic state of shock, the investigators are on you quickly. They cast an exorcism ritual which banishes you from the Earth."
                 jump game_over
             else:
-                "Using your naturally generated electricity, you send a charge through the floor."
-                $pd.investigators_remaining -= 1
                 "The lead investigator convulses in place as the others quickly back away."
                 "Smoke rises from the investigator as their flesh burns. The others, repulsed by the smell, scatter."
+                $pd.investigators_remaining -= 1
                 $pd.set_quality("elec", True)
                 $pd.set_revealed("elec", True)
                 jump scene_choosing
 
         "My corrosive acid" if pd.get_quality("acid") is not False:
+            "You spray your acid on the unsuspecting investigator."
             if pd.get_revealed("acid"):
-                "You spray your acid on the unsuspecting investigator."
                 "The investigator quickly reaches into their bag and spreads baking soda on the wound, neutralizing the acid."
                 "With your acid unable to digest your prey, the investigators are on you quickly. They cast an exorcism ritual which banishes you from the Earth."
                 jump game_over
             else:
-                "You spray your acid on the unsuspecting investigator."
                 $pd.investigators_remaining -= 1
                 "The rest react in horror as their friend is dissolved into a pile of protein rich goo and quickly run away."
                 $pd.set_quality("acid", True)
@@ -392,29 +398,34 @@ label fight_the_investigators:
                 jump scene_choosing
 
         "My constricting tentacles" if pd.get_quality("tentacles") is not False:
-        # TODO: Finish this part
+            "You reach down from above and attempt to grab one of the investigators by their neck with your tentacle."
             if pd.get_revealed("tentacles"):
-                "You attack."
-                "They kill you."
+                "The investigator appears to have been aware of the possibility and quickly ducks out of your grasp, calling out to the others."
+                "The investigators quickly surround you in your place on the ceiling. They cast an exorcism ritual which banishes you from the Earth."
                 jump game_over
             else:
-                "You attack."
+                "As you wrap around their neck you pull upwards, lifting the investigator off their feet."
+                "The investigator struggles making a gurgling sound followed by a snap."
+                "Their lifeless body slumps to the floor as you drop them."
+                "The other investigators scramble to escape your grasp."
                 $pd.investigators_remaining -= 1
-                "he dies."
                 $pd.set_quality("tentacles", True)
                 $pd.set_revealed("tentacles", True)
                 jump scene_choosing
 
         "My sharp spike" if pd.get_quality("spines") is not False:
-        # TODO: Finish this part
+            "You sense the foot falls of an investigator and time your spike perfectly to jut though their foot."
             if pd.get_revealed("spines"):
-                "You attack."
-                "They kill you."
+                "It was a trap!"
+                "The investigator was wearing stilts and you've only managed to puncture one of those."
+                "Stuck in the investigator's stilt slows you down while the rest of their team quickly sets up a ritual."
+                "Performing the exorcism, they successfully banish you from the Earth."
                 jump game_over
             else:
-                "You attack."
+
+                "The investigator falls to the ground writhing in pain giving you the opportunity to impale them a second time through the torso."
+                "The other investigators shriek in fright and scatter into other rooms of the temple."
                 $pd.investigators_remaining -= 1
-                "he dies."
                 $pd.set_quality("spines", True)
                 $pd.set_revealed("spines", True)
                 jump scene_choosing
@@ -428,7 +439,10 @@ label non_mythos_ending:
     return
 
 label game_over:
-    "You died"
+    scene stars
+    "Banished from Earth, you float aimlessly in the black space between the stars."
+    "Try as you might, you are unable to push or pull yourself in any direction."
+    "Perhaps one day, your orbit will bring you close enough to Earth so you may have your revenge."
     return
 
 label winning:
