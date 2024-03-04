@@ -34,6 +34,9 @@ label start:
         "[pd.get_quality('name')] is quite the fearsome name."
         "Truly it chills me to very core."
         "You are surely an unknowable entity."
+    elif "Kill IT reference" is True:
+        $pd.is_an_evil_clown = True
+        "Wow... bunch of stuff to unpack here."
     else:
         "[pd.get_quality('name')] is quite the fearsome name."
         "But unfortunately being named defines something about you and harms your mythos power."
