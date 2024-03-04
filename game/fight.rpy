@@ -20,6 +20,34 @@ label fight_the_investigators:
             "Do something else":
                 "Let's keep the rocket launcher secret for now."
 
+    elif pd.is_an_evil_clown:
+        menu:
+            "How will you attack the investigators?"
+
+            "Laughter is the best weapon":
+                if pd.investigators_remaining == 4:
+                    "You throw a pie at an investigator."
+                    "It lands on their face with a horrible splat."
+                    "The pie filling, acid of course, dissolves their head."
+                if pd.investigators_remaining == 3:
+                    "You invite an investigator to smell your flower broach."
+                    "Surprise! More acid!"
+                if pd.investigators_remaining == 2:
+                    "You spin up some cotton candy and shoot it at the investigator."
+                    "It clings to the investigator's body, smothering them."
+                    "Also, the cotton candy is acid."
+                if pd.investigators_remaining == 1:
+                    "Holding a big red balloon, you extend your hand to an investigator."
+                    "They stop for a moment and ask, \"wait... is this going to pop and splash me with acid?\""
+                    "You shake your head no and they happily accept the balloon."
+                    "The balloon quickly carries them thousands of feet in the air."
+                $pd.investigators_remaining -= 1
+                jump scene_choosing
+
+
+            "Do something else":
+                "Let's kill them the old fashion way."
+
     menu:
         "How will you attack the investigators?"
 
