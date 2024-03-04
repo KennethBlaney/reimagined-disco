@@ -109,31 +109,40 @@ label lungs_selector:
     return
 
 label venom_selector:
-     # TODO: finish this scene
-    "You made it to the venom screen"
+    "A cultist calls out to you. By his garb, he appears to be a leader in your cult."
+    "He says, \"Oh wise and powerful [pd.get_quality('name')]. Grant me some venom from your most terrifying maw so that we may worship you better.\""
     menu:
-        "Do you have venom?"
+        "Can you manifest some venom for this pitiful mortal and his rituals dedicated to you?"
 
         "Yes":
             $pd.set_quality("venom", True)
-            "Ooh... scary venom."
+            "You gape open your mouth as the cultist cautiously approaches."
+            "The cultist reaches in and extracts a small bottle of venom to bring back."
+            "He seems elated at the opportunity to share this relic with the cult."
+
+        "Yes, but only for the purpose of eating him":
+            $pd.set_quality("venom", True)
+            "You gape open your mouth as the cultist cautiously approaches."
+            "As the cultist reaches for a venom sac to fill a small bottle, you lunge forward and devour him."
+            "The cultist yelps in surprise, but then in ecstasy"
+            "\"My life to help nourish the dark lord. Thank you [pd.get_quality('name')]!\""
 
         "No":
-            $pd.set_quality("venom", False)
-            "Good to know. No venom."
+            $pd.set_quality("teeth", False)
+            "The cult leader bows. Dejected, but understanding."
+            "He leaves empty handed, but seemingly happy for the opportunity to have met you."
 
     jump scene_choosing
     return
 
 label shell_selector:
-     # TODO: finish this scene
     "Look out! The investigators have ambushed you and they've brought automatic weapons."
     menu:
         "They try to spray you with bullets. What do you do?"
 
         "Nothing. I have a thick shell and their bullets don't scare me.":
             $pd.set_quality("shell", True)
-            "The investigators open fire agains you, but the bullets plink harmlessly off your thick shell."
+            "The investigators open fire against you, but the bullets plink harmlessly off your thick shell."
 
         "I'm nimble and flexible enough to avoid their bullets.":
             $pd.set_quality("shell", False)
@@ -276,7 +285,6 @@ label tentacles_selector:
     return
 
 label spines_selector:
-     # TODO: Finish this part
     "You feel the investigators walking in the room above you. Unbeknownst to them, you are hiding in the muddy floor below."
     "A surprise attack with a sharp spikey part of your body could impale an investigator easily."
     menu:
