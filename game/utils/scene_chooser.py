@@ -33,4 +33,5 @@ def generate_runes(n: int) -> str:
     i = 0
     while i < n:
         output.append(chr(choice([67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109])))
+        i += 1
     return ",".join(output)

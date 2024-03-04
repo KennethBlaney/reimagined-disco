@@ -79,12 +79,20 @@ label non_mythos_ending:
     "Tired, you start to drift off to slumber again. Perhaps for another thousand years."
     "However, just before you drift off to sleep, the investigators enter the room."
     "You feel powerless to stop them for the first time, but they simply take notice of you and move on."
-    "As you look down at your form, you realize the decisions you've made about yourself have transformed you into an ordinary [ps.animal]."
+    "As you look down at your form, you realize the decisions you've made about yourself have transformed you into an ordinary [pd.animal]."
     scene expression pd.animal
     $killed = 4-pd.investigators_remaining
+    if killed == 0:
+        return
     "However, all it not lost."
-    "You killed [killed] investigators and so have earned [killed] runes of the true name of the Great Old One."
     $runes = generate_runes(killed)
+    if killed == 1:
+        "You killed [killed] investigators and so have earned [killed] rune of the true name of the Great Old One."
+        "The Great Old One's name includes the rune: [runes]"
+    else:
+        "You killed [killed] investigators and so have earned [killed] runes of the true name of the Great Old One."
+        "The Great Old One's name includes the runes: [runes]"
+
 
     return
 
