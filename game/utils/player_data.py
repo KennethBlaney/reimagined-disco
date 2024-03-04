@@ -46,6 +46,15 @@ class PlayerData:
     revealed = copy(qualities)
 
     start_candidates = [
+        AnimalCandidate(**{"name": "axolotl",
+                           "gills": True,
+                           "lungs": True
+                           }),
+        AnimalCandidate(**{"name": "bat",
+                           "sonar": True,
+                           "lungs": True,
+                           "teeth": True,
+        }),
         AnimalCandidate(**{"name": "clam",
                            "shell": True,
                            }),
@@ -53,6 +62,12 @@ class PlayerData:
                            "gills": True,
                            "shell": True,
                            "claws": True,
+                           }),
+        AnimalCandidate(**{"name": "cobra",
+                           "lungs": True,
+                           "venom": True,
+                           "teeth": True,
+                           "acid": True
                            }),
         AnimalCandidate(**{"name": "cuttlefish",
                            "fins": True,
@@ -90,13 +105,34 @@ class PlayerData:
                            "shell": True,
                            "claws": True,
                            }),
+        AnimalCandidate(**{"name": "horned lizard",
+                           "lungs": True,
+                           "teeth": True,
+                           "acid": True
+                           }),
+        AnimalCandidate(**{"name": "horseshoe crab",
+                           "gills": True,
+                           "shell": True,
+                           "spines": True
+        }),
         AnimalCandidate(**{"name": "manatee",
                            "fins": True,
                            "lungs": True,
                            }),
+        AnimalCandidate(**{"name": "mantis shrimp",
+                           "fins": True,
+                           "gills": True,
+                           "shell": True,
+                           "acid": True,
+                           "claws": True
+                           }),
         AnimalCandidate(**{"name": "octopus",
                            "gills": True,
                            "tentacles": True,
+                           }),
+        AnimalCandidate(**{"name": "sand dollar",
+                           "shell": True,
+                           "spines": True
                            }),
         AnimalCandidate(**{"name": "sea cucumber",
                            "acid": True,
@@ -134,7 +170,6 @@ class PlayerData:
                            "tentacles": True,
                            }),
         AnimalCandidate(**{"name": "starfish",
-                           "shell": True,
                            "spines": True,
                            }),
         AnimalCandidate(**{"name": "stargazer fish",
@@ -267,7 +302,9 @@ class PlayerData:
 
     def test_validity_of_candidates(self):
         anon_candidates = []
-        for candidate in self.start_candidates:
+        names = []
+        for candidate in self.start_candidates[:]:
+            names.append(candidate.name)
             candidate.name = "Animal"
             anon_candidates.append(candidate)
         for i, candidate in enumerate(anon_candidates):
@@ -275,7 +312,7 @@ class PlayerData:
                 if i >= j:
                     continue
                 if candidate == candidate2:
-                    print(f"Candidate collision on {i} and {j}")
+                    print(f"Candidate collision on {names[i]} and {names[j]}")
 
     def count_features(self):
         qualities = {"fins": 0,
