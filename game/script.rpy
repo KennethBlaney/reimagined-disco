@@ -44,10 +44,8 @@ label scene_choosing:
     scene temple_interior
 
     $ temp_cand = ", ".join(pd.candidate_names)
-    $ temp_path = ", ".join(pd.path)
     "Remaining mythos power: [pd.mythos]"
     "Remaining Candidates: [temp_cand]"
-    "Path Through: [temp_path]"
 
     $ next_scene = scene_chooser(pd)
     jump expression next_scene
