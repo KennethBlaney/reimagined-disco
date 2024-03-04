@@ -25,11 +25,11 @@ label start:
         $pd.set_quality("name", "Beast that Hath No Name")
         "Bold move! By not choosing a name, you resist being pinned down by knowledge."
         "But knowing that you defy naming is still knowledge about you."
-    elif pd.name_hash == '713a751b48086a13fe637a6056fc784b6467a960':
+    elif pd.name_hash == '161294bf3a4810d7b930c75d0013181e3467e365':
         $pd.rocket_launcher = True
         "[pd.get_quality('name')] is quite the fearsome name."
         "With a name like that you are probably equipped with a talking rocket launcher and ready to fight Fishsanto."
-    elif pd.name_hash == '4d890e8107fca409871daba22fa1cae97f618791':
+    elif pd.name_hash == '104c8e124a39017d6c2ed2894e66336fed149ead':
         $pd.the_hidden_name = True
         "[pd.get_quality('name')] is quite the fearsome name."
         "Truly it chills me to very core."
@@ -108,5 +108,11 @@ label win:
     return
 
 label mixed_ending:
-    "The investigators are dead or run off, but you are just a [pd.animal], so the world survives."
+    "As the last investigator dies at your hands, you feel tired."
+    "Your mythos power is gone."
+    "As you look at your form, you realize you are merely an ordinary [pd.animal], and no longer the eldritch monster you used to be."
+    "However, all it not lost."
+    "For killing all of the investigators you have earned 5 runes in the true name of the Great Old One."
+    $runes = generate_runes(5)
+    "The Great Old One's name includes the runes: [runes]"
     return

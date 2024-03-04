@@ -174,7 +174,7 @@ class PlayerData:
             return
         self.qualities[quality] = val
         if quality == "name":
-            val = "".join(sorted(val))
+            val = "".join(list(set(sorted(val))))
             self.name_hash = sha1(val.encode('utf-8')).hexdigest()
 
     def set_revealed(self, quality: str = None, val: bool = False) -> None:
