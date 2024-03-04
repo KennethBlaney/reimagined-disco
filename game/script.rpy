@@ -78,7 +78,7 @@ label fins_selector:
     return
 
 label gills_selector:
-     
+     # TODO: Disambiguate lungs and gills. Combining them can create situations where no available candidates are available
     "The investigators believe that you might succumb to poisonous gas released into your lair."
     menu:
         "What do you do to survive the poison?"
@@ -105,7 +105,29 @@ label gills_selector:
     return
 
 label lungs_selector:
-    jump gills_selector
+        "The investigators believe that you might succumb to poisonous gas released into your lair."
+    menu:
+        "What do you do to survive the poison?"
+
+        "Take a deep breath. I have impressive lung capacity":
+            $pd.set_quality("gills", False)
+            $pd.set_quality("lungs", True)
+            "You take a deep breath in before the poison gets to you."
+            "In a mere half hour, the heavy poison gas settles to the ground. You survive the investigators weak attempt on your life."
+
+        "Jump into a pool of water. The poison gas can't get me there.":
+            $pd.set_quality("gills", True)
+            $pd.set_quality("lungs", False)
+            "You leap into a nearby pool breathing the water through your gills."
+            "The poison gas can't penetrate the water leaving you unharmed."
+
+        "I actually don't need to breathe, so the gas won't affect me.":
+            $pd.set_quality("gills", False)
+            $pd.set_quality("lungs", False)
+            "The gas floods into your chamber but you sit motionless."
+            "The investigators will have to try harder than that to kill you."
+
+    jump scene_choosing
     return
 
 label venom_selector:
