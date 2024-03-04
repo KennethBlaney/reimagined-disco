@@ -1,4 +1,5 @@
 from copy import copy
+from hashlib import sha1
 from dataclasses import dataclass
 
 
@@ -164,10 +165,17 @@ class PlayerData:
     candidate_names = []
     path = []
 
-    def set_quality(self, quality: str = None, val: bool = False) -> None:
+    rocket_launcher = False
+    the_hidden_name = False
+    name_hash = 0
+
+    def set_quality(self, quality: str = None, val: [bool,str] = False) -> None:
         if not quality:
             return
         self.qualities[quality] = val
+        if quality == "name":
+            val = "".join(sorted(val))
+            self.name_hash = sha1(val.encode('utf-8')).hexdigest()
 
     def set_revealed(self, quality: str = None, val: bool = False) -> None:
         if not quality:
@@ -202,9 +210,14 @@ class PlayerData:
         self.candidates = self.start_candidates[:]
         self.candidate_names = [item.get_quality('name') for item in self.candidates]
         self.path = []
+        self.rocket_launcher = False
+        self.the_hidden_name = False
+        self.name_hash = 0
 
     def calculate_mythos(self) -> None:
         self.mythos = len([q for q in self.qualities.values() if q is None])
+        if self.the_hidden_name:
+            self.mythos = 13
 
     def compare_to_candidates(self):
         for quality in self.qualities:
