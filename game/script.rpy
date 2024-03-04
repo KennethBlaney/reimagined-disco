@@ -45,7 +45,7 @@ label scene_choosing:
 
     $ temp_cand = ", ".join(pd.candidate_names)
     "Remaining mythos power: [pd.mythos]"
-    "Remaining Candidates: [temp_cand]"
+    # "Remaining Candidates: [temp_cand]"
 
     $ next_scene = scene_chooser(pd)
     jump expression next_scene
@@ -97,21 +97,21 @@ label lungs_selector:
 
 label gills_selector:
         "The investigators have piled up some dynamite in your temple."
-    menu:
-        "What do you do to survive the explosion?"
+        menu:
+            "What do you do to survive the explosion?"
 
-        "Jump into a pool of water. The water will absorb the heat and pressure.":
-            $pd.set_quality("gills", True)
-            "You leap into a nearby pool breathing the water through your gills."
-            "The explosion is unable to effect the deep pool leaving you unharmed."
+            "Jump into a pool of water. The water will absorb the heat and pressure.":
+                $pd.set_quality("gills", True)
+                "You leap into a nearby pool breathing the water through your gills."
+                "The explosion is unable to effect the deep pool leaving you unharmed."
 
-        "Run from the explosion and hide behind a sturdy structure in the temple.":
-            $pd.set_quality("gills", False)
-            "The explosion echos through your temple, but the labrynthian hallways absorb the expanding gas's heat and pressure."
-            "You survive the explosion, but your temple is a mess."
+            "Run from the explosion and hide behind a sturdy structure in the temple.":
+                $pd.set_quality("gills", False)
+                "The explosion echos through your temple, but the labrynthian hallways absorb the expanding gas's heat and pressure."
+                "You survive the explosion, but your temple is a mess."
 
-    jump scene_choosing
-    return
+        jump scene_choosing
+        return
 
 label venom_selector:
     "A cultist calls out to you. By his garb, he appears to be a leader in your cult."
