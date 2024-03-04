@@ -77,26 +77,17 @@ label fins_selector:
 
     return
 
-label gills_selector:
-     # TODO: Disambiguate lungs and gills. Combining them can create situations where no available candidates are available
+label lungs_selector:
     "The investigators believe that you might succumb to poisonous gas released into your lair."
     menu:
         "What do you do to survive the poison?"
 
         "Take a deep breath. I have impressive lung capacity":
-            $pd.set_quality("gills", False)
             $pd.set_quality("lungs", True)
             "You take a deep breath in before the poison gets to you."
             "In a mere half hour, the heavy poison gas settles to the ground. You survive the investigators weak attempt on your life."
 
-        "Jump into a pool of water. The poison gas can't get me there.":
-            $pd.set_quality("gills", True)
-            $pd.set_quality("lungs", False)
-            "You leap into a nearby pool breathing the water through your gills."
-            "The poison gas can't penetrate the water leaving you unharmed."
-
-        "I actually don't need to breathe, so the gas won't affect me.":
-            $pd.set_quality("gills", False)
+        "I don't breathe air, so the gas won't affect me.":
             $pd.set_quality("lungs", False)
             "The gas floods into your chamber but you sit motionless."
             "The investigators will have to try harder than that to kill you."
@@ -104,28 +95,20 @@ label gills_selector:
     jump scene_choosing
     return
 
-label lungs_selector:
-        "The investigators believe that you might succumb to poisonous gas released into your lair."
+label gills_selector:
+        "The investigators have piled up some dynamite in your temple."
     menu:
-        "What do you do to survive the poison?"
+        "What do you do to survive the explosion?"
 
-        "Take a deep breath. I have impressive lung capacity":
-            $pd.set_quality("gills", False)
-            $pd.set_quality("lungs", True)
-            "You take a deep breath in before the poison gets to you."
-            "In a mere half hour, the heavy poison gas settles to the ground. You survive the investigators weak attempt on your life."
-
-        "Jump into a pool of water. The poison gas can't get me there.":
+        "Jump into a pool of water. The water will absorb the heat and pressure.":
             $pd.set_quality("gills", True)
-            $pd.set_quality("lungs", False)
             "You leap into a nearby pool breathing the water through your gills."
-            "The poison gas can't penetrate the water leaving you unharmed."
+            "The explosion is unable to effect the deep pool leaving you unharmed."
 
-        "I actually don't need to breathe, so the gas won't affect me.":
+        "Run from the explosion and hide behind a sturdy structure in the temple.":
             $pd.set_quality("gills", False)
-            $pd.set_quality("lungs", False)
-            "The gas floods into your chamber but you sit motionless."
-            "The investigators will have to try harder than that to kill you."
+            "The explosion echos through your temple, but the labrynthian hallways absorb the expanding gas's heat and pressure."
+            "You survive the explosion, but your temple is a mess."
 
     jump scene_choosing
     return
