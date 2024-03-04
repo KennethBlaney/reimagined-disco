@@ -1,6 +1,7 @@
 from copy import copy
 from hashlib import sha1
 from dataclasses import dataclass
+from pprint import pprint
 
 
 @dataclass
@@ -266,7 +267,7 @@ class PlayerData:
 
     def test_validity_of_candidates(self):
         anon_candidates = []
-        for candidate in self.candidates:
+        for candidate in self.start_candidates:
             candidate.name = "Animal"
             anon_candidates.append(candidate)
         for i, candidate in enumerate(anon_candidates):
@@ -274,4 +275,24 @@ class PlayerData:
                 if i >= j:
                     continue
                 if candidate == candidate2:
-                    print(f"Candidate collision on {self.candidates[i]} and {self.candidates[j]}")
+                    print(f"Candidate collision on {i} and {j}")
+
+    def count_features(self):
+        qualities = {"fins": 0,
+                     "gills": 0,
+                     "lungs": 0,
+                     "venom": 0,
+                     "shell": 0,
+                     "claws": 0,
+                     "elec": 0,
+                     "teeth": 0,
+                     "acid": 0,
+                     "tentacles": 0,
+                     "spines": 0,
+                     "sonar": 0,
+                     }
+        for candidate in self.start_candidates:
+            for quality in qualities:
+                if candidate.get_quality(quality):
+                    qualities[quality] += 1
+        pprint(qualities)
