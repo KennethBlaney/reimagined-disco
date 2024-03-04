@@ -42,10 +42,12 @@ label scene_choosing:
     $ pd.set_qualities_from_elimination()
     $ pd.calculate_mythos()
     scene temple_interior
-    # TODO: Create display code
+
     $ temp_cand = ", ".join(pd.candidate_names)
+    $ temp_path = ", ".join(pd.path)
     "Remaining mythos power: [pd.mythos]"
     "Remaining Candidates: [temp_cand]"
+    "Path Through: [temp_path]"
 
     $ next_scene = scene_chooser(pd)
     jump expression next_scene
@@ -449,6 +451,9 @@ label fight_the_investigators:
 
 label non_mythos_ending:
     "You are a [pd.animal]"
+    if pd.animal == "horror":
+        $ temp_path = ", ".join(pd.path)
+        "Your path was [temp_path]"
     return
 
 label game_over:

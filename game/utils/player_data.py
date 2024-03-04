@@ -162,6 +162,7 @@ class PlayerData:
 
     candidates = []
     candidate_names = []
+    path = []
 
     def set_quality(self, quality: str = None, val: bool = False) -> None:
         if not quality:
@@ -200,6 +201,7 @@ class PlayerData:
         self.revealed = copy(self.qualities)
         self.candidates = self.start_candidates[:]
         self.candidate_names = [item.get_quality('name') for item in self.candidates]
+        self.path = []
 
     def calculate_mythos(self) -> None:
         self.mythos = len([q for q in self.qualities.values() if q is None])

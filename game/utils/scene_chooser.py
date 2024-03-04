@@ -13,4 +13,6 @@ def scene_chooser(pd: PlayerData) -> str:
     if pd.mythos == 0:
         return "non_mythos_ending"
     remaining_unknowns = [q for q in pd.qualities if pd.qualities[q] is None]
-    return f"{choice(remaining_unknowns)}_selector"
+    next_scene = choice(remaining_unknowns)
+    pd.path.append(next_scene)
+    return f"{next_scene}_selector"
