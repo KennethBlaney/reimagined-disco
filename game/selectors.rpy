@@ -114,7 +114,7 @@ label claws_selector:
     menu:
         "This is the opportunity to pounce on one of them."
 
-        "They will never know what hit them. Attack now." if pd.get_quality("claws") is not False:
+        "Grab an investigator with your claws." if pd.get_quality("claws") is not False:
             if pd.get_revealed("claws"):
                 "You attempt to grab an investigator between your claws."
                 "The investigator is too quick and leaps out of the way, closing back in and holding your pincers together."

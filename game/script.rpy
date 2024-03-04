@@ -6,7 +6,7 @@
 # The game starts here.
 
 label start:
-    $ from utils import PlayerData, scene_chooser
+    $ from utils import PlayerData, scene_chooser, generate_runes
     $ pd = PlayerData()
     $ pd.reset_qualities()
 
@@ -25,6 +25,15 @@ label start:
         $pd.set_quality("name", "Beast that Hath No Name")
         "Bold move! By not choosing a name, you resist being pinned down by knowledge."
         "But knowing that you defy naming is still knowledge about you."
+    elif pd.name_hash == '161294bf3a4810d7b930c75d0013181e3467e365':
+        $pd.rocket_launcher = True
+        "[pd.get_quality('name')] is quite the fearsome name."
+        "With a name like that you are probably equipped with a talking rocket launcher and ready to fight Fishsanto."
+    elif pd.name_hash == '104c8e124a39017d6c2ed2894e66336fed149ead':
+        $pd.the_hidden_name = True
+        "[pd.get_quality('name')] is quite the fearsome name."
+        "Truly it chills me to very core."
+        "You are surely an unknowable entity."
     else:
         "[pd.get_quality('name')] is quite the fearsome name."
         "But unfortunately being named defines something about you and harms your mythos power."
@@ -49,6 +58,7 @@ label scene_choosing:
     $ temp_cand = ", ".join(pd.candidate_names)
     "Remaining mythos power: [pd.mythos]"
     # "Remaining Candidates: [temp_cand]"
+    "Remaining investigators: [pd.investigators_remaining]"
 
     $ next_scene = scene_chooser(pd)
     jump expression next_scene
@@ -60,10 +70,30 @@ label scene_choosing:
 
 
 label non_mythos_ending:
-    "You are a [pd.animal]"
     if pd.animal == "horror":
         $ temp_path = ", ".join(pd.path)
-        "Your path was [temp_path]"
+        "Please take a screen shot of the next line and send it to the developer."
+        "The path that caused an error was: [temp_path]"
+        return
+    "As your mythos power leaves you from the choices you've made, you begin to feel weak."
+    "Tired, you start to drift off to slumber again. Perhaps for another thousand years."
+    "However, just before you drift off to sleep, the investigators enter the room."
+    "You feel powerless to stop them for the first time, but they simply take notice of you and move on."
+    "As you look down at your form, you realize the decisions you've made about yourself have transformed you into an ordinary [pd.animal]."
+    scene expression pd.animal
+    $killed = 4-pd.investigators_remaining
+    if killed == 0:
+        return
+    "However, all it not lost."
+    $runes = generate_runes(killed)
+    if killed == 1:
+        "You killed [killed] investigators and so have earned [killed] rune of the true name of the Great Old One."
+        "The Great Old One's name includes the rune: [runes]"
+    else:
+        "You killed [killed] investigators and so have earned [killed] runes of the true name of the Great Old One."
+        "The Great Old One's name includes the runes: [runes]"
+
+
     return
 
 label game_over:
@@ -73,10 +103,16 @@ label game_over:
     "Perhaps one day, your orbit will bring you close enough to Earth so you may have your revenge."
     return
 
-label winning:
+label win:
     "You destroy the Earth"
     return
 
 label mixed_ending:
-    "The investigators are dead or run off, but you are just a [pd.animal], so the world survives."
+    "As the last investigator dies at your hands, you feel tired."
+    "Your mythos power is gone."
+    "As you look at your form, you realize you are merely an ordinary [pd.animal], and no longer the eldritch monster you used to be."
+    "However, all it not lost."
+    "For killing all of the investigators you have earned 5 runes in the true name of the Great Old One."
+    $runes = generate_runes(5)
+    "The Great Old One's name includes the runes: [runes]"
     return

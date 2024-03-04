@@ -6,6 +6,20 @@ label fight_the_investigators:
     $ pd.set_qualities_from_elimination()
     $ pd.calculate_mythos()
 
+    if pd.rocket_launcher:
+        menu:
+            "How will you attack the investigators?"
+
+            "Fire my rocket launcher at them!":
+                "You fire your rocket launcher at the investigators killing them all."
+                "That was easy."
+                $pd.investigators_remaining -= 4
+                jump scene_choosing
+
+
+            "Do something else":
+                "Let's keep the rocket launcher secret for now."
+
     menu:
         "How will you attack the investigators?"
 
