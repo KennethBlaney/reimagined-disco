@@ -59,6 +59,10 @@ class PlayerData:
                            "venom": True,
                            "tentacles": True,
                            }),
+        AnimalCandidate(**{"name": "dart frog",
+                           "lungs": True,
+                           "venom": True
+                           }),
         AnimalCandidate(**{"name": "dolphin",
                            "fins": True,
                            "lungs": True,
@@ -98,6 +102,11 @@ class PlayerData:
                            "tentacles": True,
                            }),
         AnimalCandidate(**{"name": "sea sponge"}),
+        AnimalCandidate(**{"name": "sea snake",
+                           "lungs": True,
+                           "venom": True,
+                           "teeth": True
+                           }),
         AnimalCandidate(**{"name": "sea turtle",
                            "fins": True,
                            "lungs": True,
@@ -169,7 +178,7 @@ class PlayerData:
     the_hidden_name = False
     name_hash = 0
 
-    def set_quality(self, quality: str = None, val: [bool,str] = False) -> None:
+    def set_quality(self, quality: str = None, val: [bool, str] = False) -> None:
         if not quality:
             return
         self.qualities[quality] = val
