@@ -1,5 +1,6 @@
 from copy import copy
-from hashlib import sha1
+import os
+import hashlib
 from dataclasses import dataclass
 
 
@@ -21,7 +22,6 @@ class AnimalCandidate:
 
     def get_quality(self, quality):
         return self.__getattribute__(quality)
-
 
 @dataclass
 class PlayerData:
@@ -167,6 +167,7 @@ class PlayerData:
 
     rocket_launcher = False
     the_hidden_name = False
+    is_an_evil_clown = False
     name_hash = 0
 
     def set_quality(self, quality: str = None, val: [bool,str] = False) -> None:
@@ -174,8 +175,10 @@ class PlayerData:
             return
         self.qualities[quality] = val
         if quality == "name":
-            val = "".join(list(set(sorted(val))))
-            self.name_hash = sha1(val.encode('utf-8')).hexdigest()
+            val = list(set(val))
+            val.sort()
+            val = "".join(val)
+            self.name_hash = hashlib.sha1(val.encode()).hexdigest()
 
     def set_revealed(self, quality: str = None, val: bool = False) -> None:
         if not quality:
@@ -212,6 +215,7 @@ class PlayerData:
         self.path = []
         self.rocket_launcher = False
         self.the_hidden_name = False
+        self.is_an_evil_clown = False
         self.name_hash = 0
 
     def calculate_mythos(self) -> None:
