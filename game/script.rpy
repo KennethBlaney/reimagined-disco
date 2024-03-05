@@ -4,6 +4,10 @@
 # name of the character.
 
 # TODO: define background images
+image stars = im.Scale("stars.webp", 2560, 1440)
+
+transform offscreenbottomleft:
+    xpos 0.0 xanchor 1.0 ypos 2.0 yanchor 1.0
 
 # The game starts here.
 
@@ -15,10 +19,11 @@ label start:
     # Set up premise
     scene black
     "You awaken!"
-    scene stars
+    show stars with dissolve
     "You are an unknown, mysterious, alien entity on this world."
     "Your motives are understood only by yourself. They cannot be understood by mere mortal men."
-    scene cult_ritual
+    hide stars with dissolve
+    scene cult_ritual with dissolve
     "Not even the cultists who wish to pay you tribute can comprehend the vastness of your intellect."
 
     # Set the creature's name.
