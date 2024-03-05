@@ -6,6 +6,7 @@
 # The game starts here.
 
 label start:
+    $ config.rollback_enabled = False
     $ from utils import PlayerData, scene_chooser, generate_runes
     $ pd = PlayerData()
     $ pd.reset_qualities()
