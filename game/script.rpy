@@ -6,8 +6,7 @@
 # TODO: define background images
 image stars = im.Scale("stars.webp", 2560, 1440)
 
-transform offscreenbottomleft:
-    xpos 0.0 xanchor 1.0 ypos 2.0 yanchor 1.0
+define slow_fade = Fade(2,0,2)
 
 # The game starts here.
 
@@ -21,14 +20,13 @@ label start:
     $ preferences.text_cps = 15
     scene black
     "You awaken!"
-
     $ preferences.text_cps = 150
-    show stars with dissolve
-
+    show stars with slow_fade
     "You are an unknown, mysterious, alien entity on this world."
     "Your motives are understood only by yourself. They cannot be understood by mere mortal men."
-    hide stars with dissolve
-    scene cult_ritual with dissolve
+    hide stars with slow_fade
+
+    scene cult_ritual with slow_fade
     "Not even the cultists who wish to pay you tribute can comprehend the vastness of your intellect."
 
     # Set the creature's name.
