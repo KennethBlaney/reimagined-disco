@@ -165,3 +165,4 @@ log.txt
 game/saves/
 game/cache/
 *.rpyc
+game/renpy-ActionEditor3-master/
