@@ -6,6 +6,7 @@
 # The game starts here.
 
 label start:
+    $ config.rollback_enabled = False
     $ from utils import PlayerData, scene_chooser, generate_runes
     $ pd = PlayerData()
     $ pd.reset_qualities()
@@ -13,6 +14,7 @@ label start:
     # Set up premise
     scene black
     "You awaken!"
+    $ preferences.text_cps = 150
     scene stars
     "You are an unknown, mysterious, alien entity on this world."
     "Your motives are understood only by yourself. They cannot be understood by mere mortal men."
