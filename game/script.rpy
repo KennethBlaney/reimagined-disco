@@ -12,14 +12,19 @@ transform offscreenbottomleft:
 # The game starts here.
 
 label start:
+    $ config.rollback_enabled = False
     $ from utils import PlayerData, scene_chooser, generate_runes
     $ pd = PlayerData()
     $ pd.reset_qualities()
 
     # Set up premise
+    $ preferences.text_cps = 15
     scene black
     "You awaken!"
+
+    $ preferences.text_cps = 150
     show stars with dissolve
+
     "You are an unknown, mysterious, alien entity on this world."
     "Your motives are understood only by yourself. They cannot be understood by mere mortal men."
     hide stars with dissolve
@@ -32,15 +37,23 @@ label start:
         $pd.set_quality("name", "Beast that Hath No Name")
         "Bold move! By not choosing a name, you resist being pinned down by knowledge."
         "But knowing that you defy naming is still knowledge about you."
-    elif pd.name_hash == '161294bf3a4810d7b930c75d0013181e3467e365':
+    elif pd.name_hash == '8eeda85ec33732f2e43952f95fef42b8b7180923':
         $pd.rocket_launcher = True
         "[pd.get_quality('name')] is quite the fearsome name."
         "With a name like that you are probably equipped with a talking rocket launcher and ready to fight Fishsanto."
-    elif pd.name_hash == '104c8e124a39017d6c2ed2894e66336fed149ead':
+    elif pd.name_hash == '4d890e8107fca409871daba22fa1cae97f618791':
         $pd.the_hidden_name = True
-        "[pd.get_quality('name')] is quite the fearsome name."
-        "Truly it chills me to very core."
+        "[pd.get_quality('name')]?"
+        "It is YOU! You are the Great Old One."
+        $pd.set_quality("name", "Great Old One")
+        "Truly, your name chills me to very core."
         "You are surely an unknowable entity."
+    elif pd.name_hash == 'da02c82aa690956281ead291a46f53b34c7e3e4d':
+        $pd.is_an_evil_clown = True
+        "Wow... bunch of stuff to unpack here."
+    elif pd.name_hash == '957a3b6762ba76e2f5898de288c889b30dfa085b':
+        $pd.is_an_evil_clown = True
+        "Wow... bunch of stuff to unpack here."
     else:
         "[pd.get_quality('name')] is quite the fearsome name."
         "But unfortunately being named defines something about you and harms your mythos power."
@@ -82,6 +95,8 @@ label non_mythos_ending:
         "Please take a screen shot of the next line and send it to the developer."
         "The path that caused an error was: [temp_path]"
         return
+    if pd.is_an_evil_clown:
+        $pd.animal = "clown fish"
     "As your mythos power leaves you from the choices you've made, you begin to feel weak."
     "Tired, you start to drift off to slumber again. Perhaps for another thousand years."
     "However, just before you drift off to sleep, the investigators enter the room."
@@ -111,6 +126,8 @@ label game_over:
     return
 
 label win:
+    if pd.is_an_evil_clown:
+        "You laugh manically"
     "You destroy the Earth"
     return
 
