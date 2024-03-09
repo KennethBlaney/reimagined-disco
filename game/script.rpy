@@ -21,10 +21,18 @@ label start:
     scene black
     "You awaken!"
     $ preferences.text_cps = 150
-    show stars with slow_fade
+
+    window auto hide
+    show stars:
+        subpixel True
+        matrixtransform ScaleMatrix(1.2, 1.2, 1.0)*OffsetMatrix(100.0, -100.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+        linear 5.00 matrixtransform ScaleMatrix(1.25, 1.25, 1.0)*OffsetMatrix(-100.0, 100.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+    with Pause(5.10)
+    window auto show
+
+
     "You are an unknown, mysterious, alien entity on this world."
     "Your motives are understood only by yourself. They cannot be understood by mere mortal men."
-    hide stars with slow_fade
 
     scene cult_ritual with slow_fade
     "Not even the cultists who wish to pay you tribute can comprehend the vastness of your intellect."
