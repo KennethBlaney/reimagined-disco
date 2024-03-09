@@ -598,7 +598,6 @@ screen credits():
 
             label "[config.name!t]"
             text _("Version [config.version!t]\n")
-            # text _("A Digital Bad Boys Studios game")
             text _("Created by Kenneth Blaney")
             text _("")
             text _("\'The Aurora Named STEVE\' image used in accordance with NASA image use policy.")
