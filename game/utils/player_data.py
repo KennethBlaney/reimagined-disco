@@ -380,4 +380,5 @@ class PlayerData:
             for quality in qualities:
                 if candidate.get_quality(quality):
                     qualities[quality] += 1
+        pprint(f"Total animals: {len(self.start_candidates)}")
         pprint(qualities)
