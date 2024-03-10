@@ -1,16 +1,4 @@
-﻿# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-# TODO: define background images
-image stars = im.Scale("stars.webp", 2560, 1440)
-
-define slow_fade = Fade(2,0,2)
-
-# The game starts here.
-
-label start:
+﻿label start:
     $ config.rollback_enabled = False
     $ from utils import PlayerData, scene_chooser, generate_runes
     $ pd = PlayerData()
@@ -21,23 +9,25 @@ label start:
     scene black
     "You awaken!"
     $ preferences.text_cps = 150
-
     window auto hide
-    show stars:
+    show stars with fade:
         subpixel True
         matrixtransform ScaleMatrix(1.2, 1.2, 1.0)*OffsetMatrix(100.0, -100.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
-        linear 5.00 matrixtransform ScaleMatrix(1.25, 1.25, 1.0)*OffsetMatrix(-100.0, 100.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
-    with Pause(5.10)
+        linear 15.00 matrixtransform ScaleMatrix(1.4, 1.4, 1.0)*OffsetMatrix(-100.0, 100.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+    with Pause(1.50)
     window auto show
-
-
     "You are an unknown, mysterious, alien entity on this world."
     "Your motives are understood only by yourself. They cannot be understood by mere mortal men."
 
-    scene cult_ritual with slow_fade
+    # Establish cult and creature name
+    window auto hide
+    scene cult_ritual with slow_fade:
+        subpixel True
+        matrixtransform ScaleMatrix(1.2, 1.2, 1.0)*OffsetMatrix(150.0, 20.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+        linear 30.00 matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*OffsetMatrix(-100.0, -20.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+    with Pause(1.10)
+    window auto show
     "Not even the cultists who wish to pay you tribute can comprehend the vastness of your intellect."
-
-    # Set the creature's name.
     $ pd.set_quality("name", renpy.input("So that your cult may worship you more effectively, what is your name?"))
     if not pd.qualities["name"]:
         $pd.set_quality("name", "Beast that Hath No Name")
@@ -63,28 +53,29 @@ label start:
     else:
         "[pd.get_quality('name')] is quite the fearsome name."
         "But unfortunately being named defines something about you and harms your mythos power."
-    
-    # Set up danger
     "[pd.get_quality('name')], guard your mythos power and don't let yourself be defined by anything."
-    scene investigators
+
+    # Set up danger
+    scene investigators with slow_fade
     "Unfortunately, there is a group of investigators who will stop at nothing to learn your secrets, discover your weaknesses and remove you from this world."
     "Protect yourself from them so that you may rise from your palace under the waves and dominate the Earth."
     jump scene_choosing
     return
 
 
+label show_game_status_screen:
+    screen game_status:
+            text "mythos power: [pd.mythos]\ninvestigators: [pd.investigators_remaining]" xalign 0.02 yalign 0.02
+    show screen game_status
+    return
 
 
 label scene_choosing:
     $ pd.compare_to_candidates()
     $ pd.set_qualities_from_elimination()
     $ pd.calculate_mythos()
-    scene temple_interior
-
-    $ temp_cand = ", ".join(pd.candidate_names)
-    "Remaining mythos power: [pd.mythos]"
-    # "Remaining Candidates: [temp_cand]"
-    "Remaining investigators: [pd.investigators_remaining]"
+    scene temple_interior with fade
+    call show_game_status_screen
 
     $ next_scene = scene_chooser(pd)
     jump expression next_scene
@@ -108,7 +99,7 @@ label non_mythos_ending:
     "However, just before you drift off to sleep, the investigators enter the room."
     "You feel powerless to stop them for the first time, but they simply take notice of you and move on."
     "As you look down at your form, you realize the decisions you've made about yourself have transformed you into an ordinary [pd.animal]."
-    scene expression pd.animal
+    show expression pd.animal
     $killed = 4-pd.investigators_remaining
     if killed == 0:
         return
