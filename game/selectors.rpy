@@ -109,7 +109,6 @@ label shell_selector:
     return
 
 label claws_selector:
-
     "The investigators are looking around your home, but they've made the fatal mistake of not looking up."
     menu:
         "This is the opportunity to pounce on one of them."
