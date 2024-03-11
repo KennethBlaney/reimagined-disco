@@ -98,21 +98,12 @@ label non_mythos_ending:
     "Tired, you start to drift off to slumber again. Perhaps for another thousand years."
     "However, just before you drift off to sleep, the investigators enter the room."
     "You feel powerless to stop them for the first time, but they simply take notice of you and move on."
-    "As you look down at your form, you realize the decisions you've made about yourself have transformed you into an ordinary [pd.animal]."
+    "As you look down at your form, you realize the decisions you've made about yourself have transformed you into{w} an ordinary [pd.animal]."
     show expression pd.animal
     $killed = 4-pd.investigators_remaining
     if killed == 0:
         return
-    "However, all it not lost."
-    $runes = generate_runes(killed)
-    if killed == 1:
-        "You killed [killed] investigators and so have earned [killed] rune of the true name of the Great Old One."
-        "The Great Old One's name includes the rune: [runes]"
-    else:
-        "You killed [killed] investigators and so have earned [killed] runes of the true name of the Great Old One."
-        "The Great Old One's name includes the runes: [runes]"
-
-
+    jump reward_runes
     return
 
 label game_over:
@@ -120,20 +111,79 @@ label game_over:
     "Banished from Earth, you float aimlessly in the black space between the stars."
     "Try as you might, you are unable to push or pull yourself in any direction."
     "Perhaps one day, your orbit will bring you close enough to Earth so you may have your revenge."
+    if killed == 0:
+        return
+    jump reward_runes
     return
 
-label win:
-    if pd.is_an_evil_clown:
-        "You laugh manically"
-    "You destroy the Earth"
+label reward_runes:
+    "However, all is not lost."
+    $runes = generate_runes(killed)
+    if killed == 1:
+        "You killed [killed] investigators and so have earned [killed] rune of the true name of the Great Old One."
+        "The Great Old One's name includes the rune: [runes]"
+    else:
+        "You killed [killed] investigators and so have earned [killed] runes of the true name of the Great Old One."
+        "The Great Old One's name includes the runes: [runes]"
     return
+
 
 label mixed_ending:
     "As the last investigator dies at your hands, you feel tired."
     "Your mythos power is gone."
-    "As you look at your form, you realize you are merely an ordinary [pd.animal], and no longer the eldritch monster you used to be."
-    "However, all it not lost."
+    "As you look at your form, you realize you are merely {w}an ordinary [pd.animal], and no longer the eldritch monster you used to be."
+    "However, all is not lost."
     "For killing all of the investigators you have earned 5 runes in the true name of the Great Old One."
     $runes = generate_runes(5)
     "The Great Old One's name includes the runes: [runes]"
+    return
+
+label win:
+    if pd.is_an_evil_clown:
+        "You laugh manically and honk your large clown nose."
+    "As the last investigator dies, so does Earth's last hope."
+    "Now, no one can stop you, oh Great Old One [pd.get_quality('name')] from your dark and unknowable plan."
+    "Your cult gathers around you."
+    "Now is the time of your ascension!"
+
+    if pd.rocket_launcher:
+        "Circling the corpses of the investigators around you, the cultists one by one remove their masks."
+        "Each of them, secretly one of the Octopus Chairment of Fishsanto, the evil genetic engineering company that has been poisoning the oceans."
+        "If four of them are here, then there is only one left."
+        "Jetting off into the water, you set course for the Southern Ocean."
+        ""
+        "Thank you for playing 'Arise Oh Elder God' and probably 'Sharktillary' as well.{w}\nThe End."
+        return
+
+    menu:
+        "What is your plan for the world?"
+
+        "Dominate the world":
+            "These tiny humans stand no chance against you."
+            "With a show of force and power, world leaders are soon begging for your mercy."
+            "You grant it to them.{w}.. so long as they promise you devotion and servitude."
+            "The Earth is yours."
+
+        "Bring peace via alien technology":
+            "Your gathered cult suddenly understands your divine plan."
+            "Schematics for beneficial devices appear, fully formed in their heads."
+            "New scientific and mathematical insights become child's play to them."
+            "Each cultist becomes a captain of industry or an award winning academic within the decade."
+            "Earth enjoys a new golden age of productivity and leisure."
+            "And it is all thanks to you."
+
+        "Ascend into space. Earth is insignificant.":
+            "Earth isn't your home planet, or even significant to your larger goals."
+            "It was merely your prison for the last thousand years."
+            "Now you have escaped and the rest of the universe doesn't know what it coming for it."
+
+        "Destroy everything":
+            "Earth isn't your home planet, or even significant to your larger goals."
+            "It was merely your prison for the last thousand years."
+            "Now that you have escaped, you ensure that you will never be imprisioned in such a place ever again."
+            "You channel your power into the core of the Earth... this pitiful ball of wet dirt in a vast expanse of space."
+            "Existing on Earth is hellish for but a moment as the planet splits apart."
+            "Humans are extinct in a flash.{w}.. but on a cosmic scale, it is as if nothing happened at all."
+
+    "Thank you for playing 'Arise Oh Elder God'.{w}\nThe End."
     return
