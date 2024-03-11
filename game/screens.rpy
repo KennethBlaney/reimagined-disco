@@ -249,14 +249,14 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+            # textbutton _("Back") action Rollback()
+            # textbutton _("History") action ShowMenu('history')
+            # textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            # textbutton _("Auto") action Preference("auto-forward", "toggle")
+            # textbutton _("Save") action ShowMenu('save')
+            # textbutton _("Q.Save") action QuickSave()
+            # textbutton _("Q.Load") action QuickLoad()
+            # textbutton _("Prefs") action ShowMenu('preferences')
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -303,17 +303,19 @@ screen navigation():
 
             textbutton _("History") action ShowMenu("history")
 
-            textbutton _("Save") action ShowMenu("save")
+            # textbutton _("Save") action ShowMenu("save")
 
-        textbutton _("Load") action ShowMenu("load")
+        # textbutton _("Load") action ShowMenu("load")
 
         textbutton _("Preferences") action ShowMenu("preferences")
 
-        if _in_replay:
+        textbutton _("Credits") action ShowMenu("credits")
 
-            textbutton _("End Replay") action EndReplay(confirm=True)
+        #if _in_replay:
 
-        elif not main_menu:
+        #    textbutton _("End Replay") action EndReplay(confirm=True)
+
+        if not main_menu:
 
             textbutton _("Main Menu") action MainMenu()
 
@@ -574,6 +576,65 @@ style about_label_text:
     size gui.label_text_size
 
 
+## About screen ################################################################
+##
+## This screen gives credit and copyright information about the game and Ren'Py.
+##
+## There's nothing special about this screen, and hence it also serves as an
+## example of how to make a custom screen.
+
+screen credits():
+
+    tag menu
+
+    ## This use statement includes the game_menu screen inside this one. The
+    ## vbox child is then included inside the viewport inside the game_menu
+    ## screen.
+    use game_menu(_("Credits"), scroll="viewport"):
+
+        style_prefix "credits"
+
+        vbox:
+
+            label "[config.name!t]"
+            text _("Version [config.version!t]\n")
+            text _("Created by Kenneth Blaney")
+            text _("")
+            text _("\'The Aurora Named STEVE\' image used in accordance with NASA image use policy.")
+            text _("\'Giant Clam\' image by Charles J. Sharp")
+            text _("\'Cuttlefish\' image by Nick Hobgood")
+            text _("\'Dolphin\' image by Ste Elmore")
+            text _("\'Eel\' image by wikipedia User:GerardM")
+            text _("\'Fish\' image by Diliff, edited by Fir0002")
+            text _("\'Jellyfish\' image by flickr user Dan90266")
+            text _("\'Lobster\' image by OAR/National Undersea Research Program (NURP)")
+            text _("\'Manatee\' image by wikipedia User:Ahodges7")
+            text _("\'Octopus\' image by albert kok")
+            text _("\'Sea Cucumber\' image by Leonard Low")
+            text _("\'Sea Sponge\' image by Nick Hobgood")
+            text _("\'Sea Turtle\' image by Brocken Inaglory")
+            text _("\'Seal\' image by Wordless symbol at English Wikipedia")
+            text _("\'Shark\' image by Kevin Lino")
+            text _("\'Shrimp\' image by Хомелка")
+            text _("\'Starfish\' image by Jon Hanson on flickr")
+            text _("\'Stargazer Fish\' image by Canvasman21 at English Wikipedia")
+            text _("\'Stingray\' image by Wrtiii3644 at English Wikipedia")
+            text _("\'Turtle\' image by Bizarria")
+            text _("\'Urchin\' image by Frédéric Ducarme")
+            text _("\'Walrus\' image by Joel Garlich-Miller, U.S. Fish and Wildlife Service")
+            text _("\'Whale\' image by Michaël CATANZARITI")
+            text _("\'Clown Fish\' image by Przemek Pietrak")
+
+
+
+
+style about_label is gui_label
+style about_label_text is gui_label_text
+style about_text is gui_text
+
+style about_label_text:
+    size gui.label_text_size
+
 ## Load and Save screens #######################################################
 ##
 ## These screens are responsible for letting the player save the game and load
@@ -760,15 +821,11 @@ screen preferences():
                 style_prefix "slider"
                 box_wrap True
 
-                vbox:
-
-                    label _("Text Speed")
-
-                    bar value Preference("text speed")
-
-                    label _("Auto-Forward Time")
-
-                    bar value Preference("auto-forward time")
+                #vbox:
+                #    label _("Text Speed")
+                #    bar value Preference("text speed")
+                #    label _("Auto-Forward Time")
+                #    bar value Preference("auto-forward time")
 
                 vbox:
 
@@ -789,14 +846,14 @@ screen preferences():
                                 textbutton _("Test") action Play("sound", config.sample_sound)
 
 
-                    if config.has_voice:
-                        label _("Voice Volume")
+                    #if config.has_voice:
+                    #    label _("Voice Volume")
 
-                        hbox:
-                            bar value Preference("voice volume")
+                    #    hbox:
+                    #        bar value Preference("voice volume")
 
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                    #        if config.sample_voice:
+                    #            textbutton _("Test") action Play("voice", config.sample_voice)
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
