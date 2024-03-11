@@ -601,6 +601,31 @@ screen credits():
             text _("Created by Kenneth Blaney")
             text _("")
             text _("\'The Aurora Named STEVE\' image used in accordance with NASA image use policy.")
+            text _("\'Giant Clam\' image by Charles J. Sharp")
+            text _("\'Cuttlefish\' image by Nick Hobgood")
+            text _("\'Dolphin\' image by Ste Elmore")
+            text _("\'Eel\' image by wikipedia User:GerardM")
+            text _("\'Fish\' image by Diliff, edited by Fir0002")
+            text _("\'Jellyfish\' image by flickr user Dan90266")
+            text _("\'Lobster\' image by OAR/National Undersea Research Program (NURP)")
+            text _("\'Manatee\' image by wikipedia User:Ahodges7")
+            text _("\'Octopus\' image by albert kok")
+            text _("\'Sea Cucumber\' image by Leonard Low")
+            text _("\'Sea Sponge\' image by Nick Hobgood")
+            text _("\'Sea Turtle\' image by Brocken Inaglory")
+            text _("\'Seal\' image by Wordless symbol at English Wikipedia")
+            text _("\'Shark\' image by Kevin Lino")
+            text _("\'Shrimp\' image by Хомелка")
+            text _("\'Starfish\' image by Jon Hanson on flickr")
+            text _("\'Stargazer Fish\' image by Canvasman21 at English Wikipedia")
+            text _("\'Stingray\' image by Wrtiii3644 at English Wikipedia")
+            text _("\'Turtle\' image by Bizarria")
+            text _("\'Urchin\' image by Frédéric Ducarme")
+            text _("\'Walrus\' image by Joel Garlich-Miller, U.S. Fish and Wildlife Service")
+            text _("\'Whale\' image by Michaël CATANZARITI")
+            text _("\'Clown Fish\' image by Przemek Pietrak")
+
+
 
 
 style about_label is gui_label

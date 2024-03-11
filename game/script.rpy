@@ -98,8 +98,10 @@ label non_mythos_ending:
     "Tired, you start to drift off to slumber again. Perhaps for another thousand years."
     "However, just before you drift off to sleep, the investigators enter the room."
     "You feel powerless to stop them for the first time, but they simply take notice of you and move on."
-    "As you look down at your form, you realize the decisions you've made about yourself have transformed you into{w} an ordinary [pd.animal]."
-    show expression pd.animal
+    $animal = pd.animal.replace(" ", "_")
+    show expression animal with fade:
+        pos (0.5, 0.5) anchor (0.5, 0.5)
+    "As you look down at your form, you realize the decisions you've made about yourself have transformed you into... an ordinary [pd.animal]."
     $killed = 4-pd.investigators_remaining
     if killed == 0:
         return
@@ -131,7 +133,7 @@ label reward_runes:
 label mixed_ending:
     "As the last investigator dies at your hands, you feel tired."
     "Your mythos power is gone."
-    "As you look at your form, you realize you are merely {w}an ordinary [pd.animal], and no longer the eldritch monster you used to be."
+    "As you look at your form, you realize you are merely.{w}.. an ordinary [pd.animal], and no longer the eldritch monster you once were."
     "However, all is not lost."
     "For killing all of the investigators you have earned 5 runes in the true name of the Great Old One."
     $runes = generate_runes(5)

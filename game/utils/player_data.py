@@ -79,7 +79,7 @@ class PlayerData:
                            "acid": True,
                            "tentacles": True,
                            }),
-        AnimalCandidate(**{"name": "walrus",
+        AnimalCandidate(**{"name": "lobster",
                            "fins": True,
                            "gills": True,
                            "shell": True,
