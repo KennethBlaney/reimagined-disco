@@ -600,6 +600,7 @@ screen credits():
             text _("Version [config.version!t]\n")
             text _("Created by Kenneth Blaney")
             text _("")
+            text _("Photography Art Credits for CC-BY Photos")
             text _("\'The Aurora Named STEVE\' image used in accordance with NASA image use policy.")
             text _("\'Giant Clam\' image by Charles J. Sharp")
             text _("\'Cuttlefish\' image by Nick Hobgood")
