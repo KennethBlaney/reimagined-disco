@@ -35,7 +35,7 @@ label fight_the_investigators:
                 if pd.investigators_remaining == 2:
                     "You spin up some cotton candy and shoot it at the investigator."
                     "It clings to the investigator's body, smothering them."
-                    "The investigator dies a claustophobic and horrible death"
+                    "The investigator dies a claustophobic and horrible death."
                     ""
                     "Also, the cotton candy is acid."
                 if pd.investigators_remaining == 1:
@@ -46,7 +46,7 @@ label fight_the_investigators:
                     "Once so high up, the balloon pops and the investigator plummets to the ground, surely to their death."
                     "But wait... a swimming pool. If they can just land in the pool, everything will be fine."
                     "With a splash they land in the pool.{w}.. and immediately start dissolving."
-                    "A sandistic clown laugh later, you pull back the label on the pool revealing a comically large sign than says 'ACID'."
+                    "A sadistic clown laugh later, you pull back the label on the pool revealing a comically large sign than says 'ACID'."
                 $pd.investigators_remaining -= 1
                 jump scene_choosing
 
