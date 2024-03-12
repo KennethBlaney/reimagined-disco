@@ -624,6 +624,26 @@ screen credits():
             text _("\'Walrus\' image by Joel Garlich-Miller, U.S. Fish and Wildlife Service")
             text _("\'Whale\' image by Michaël CATANZARITI")
             text _("\'Clown Fish\' image by Przemek Pietrak")
+            text _("\'Anemone\' image by Anders Poulsen")
+            text _("\'Coral\' image by 	Toby Hudson")
+            text _("\'Axolotl\' image by th1098")
+            text _("\'Vampire Bat\' image by Acatenazzi at English Wikipedia")
+            text _("\'Bear\' image by Jean-noël Lafargue")
+            text _("\'Caecilian\' image by Marius Burger")
+            text _("\'Catfish\' image by  U.S. Army Corps of Engineers")
+            text _("\'Cobra\' image by Kamalnv")
+            text _("\'Dart Frog\' image by Freetoast")
+            text _("\'Lion Fish\' image by Alexander Vasenin")
+            text _("\'Lungfish\' image by Mitch Ames")
+            text _("\'Mollusk\' image by Zachi Evenor")
+            text _("\'Horned Lizard\' image by Room237")
+            text _("\'Horseshoe Crab\' image by Hans Hillewaert")
+            text _("\'Mantis Shrimp\' image by Jenny")
+            text _("\'Platypus\' image by Charles J. Sharp")
+            text _("\'Sand Dollar\' image by Frédéric Ducarme")
+            text _("\'Sea Snake\' image by jon hanson ")
+            text _("\'Manta Ray\' image by Shiyam ElkCloner")
+
 
 
 
