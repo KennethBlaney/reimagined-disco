@@ -135,6 +135,7 @@ label non_mythos_ending:
     "As you look down at your form, you realize the decisions you've made about yourself have transformed you into... an ordinary [pd.animal]."
     $killed = 4-pd.investigators_remaining
     if killed == 0:
+        stop music fadeout 2.0
         scene black with slow_fade
         return
     jump reward_runes
@@ -147,6 +148,7 @@ label game_over:
     "Perhaps one day, your orbit will bring you close enough to Earth so you may have your revenge."
     $killed = 4-pd.investigators_remaining
     if killed == 0:
+        stop music fadeout 2.0
         scene black with slow_fade
         return
     jump reward_runes
