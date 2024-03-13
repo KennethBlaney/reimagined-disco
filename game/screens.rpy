@@ -297,7 +297,9 @@ screen navigation():
 
         if main_menu:
 
-            textbutton _("Start") action Start()
+            textbutton _("Start"):
+                activate_sound "main_menu_start.mp3"
+                action Start()
 
         else:
 
@@ -600,6 +602,9 @@ screen credits():
             text _("Version [config.version!t]\n")
             text _("All work not otherwise credited by Kenneth Blaney")
             text _("This work released under CC BY-SA 4.0")
+            text _("")
+            text _("Music licensed from Dark Fantasy Studio")
+            text _("SoundFX licensed from Audio Hero")
             text _("")
             text _("Animal Photography Credits")
             text _("\'The Aurora Named STEVE\' image used in accordance with NASA image use policy.")

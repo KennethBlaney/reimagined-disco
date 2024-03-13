@@ -5,6 +5,8 @@
     $ pd.reset_qualities()
     $ killed = 0
 
+    play music "dread.mp3"
+
     # Set up premise
     $ preferences.text_cps = 15
     scene black
@@ -152,9 +154,11 @@ label reward_runes:
     $runes = generate_runes(killed)
     if killed == 1:
         "You killed [killed] investigators and so have earned [killed] rune of the true name of the Great Old One."
+        stop music fadeout 2.0
         "The Great Old One's name includes the rune: [runes]"
     else:
         "You killed [killed] investigators and so have earned [killed] runes of the true name of the Great Old One."
+        stop music fadeout 2.0
         "The Great Old One's name includes the runes: [runes]"
     return
 
@@ -167,6 +171,7 @@ label mixed_ending:
     "However, all is not lost."
     "For killing all of the investigators you have earned 5 runes in the true name of the Great Old One."
     $runes = generate_runes(5)
+    stop music fadeout 2.0
     "The Great Old One's name includes the runes: [runes]"
     return
 
@@ -185,6 +190,7 @@ label win:
         "If four of them are here, then there is only one left."
         "Jetting off into the water, you set course for the Southern Ocean."
         ""
+        stop music fadeout 2.0
         "Thank you for playing 'Arise Oh Elder God' and probably 'Sharktillary' as well.{w}\nThe End."
         return
 
@@ -217,6 +223,6 @@ label win:
             "You channel your power into the core of the Earth... this pitiful ball of wet dirt in a vast expanse of space."
             "Existing on Earth is hellish for but a moment as the planet splits apart."
             "Humans are extinct in a flash.{w}.. but on a cosmic scale, it is as if nothing happened at all."
-
+    stop music fadeout 2.0
     "Thank you for playing 'Arise Oh Elder God'.{w}\nThe End."
     return
