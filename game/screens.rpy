@@ -374,8 +374,8 @@ screen main_menu():
             text "[config.name!t]":
                 style "main_menu_title"
 
-            text "[config.version]":
-                style "main_menu_version"
+            #text "[config.version]":
+            #    style "main_menu_version"
 
 
 style main_menu_frame is empty
@@ -761,29 +761,29 @@ screen file_slots(title):
 
                     spacing gui.page_spacing
 
-                    textbutton _("<") action FilePagePrevious()
+                    #textbutton _("<") action FilePagePrevious()
 
-                    if config.has_autosave:
-                        textbutton _("{#auto_page}A") action FilePage("auto")
+                    #if config.has_autosave:
+                    #    textbutton _("{#auto_page}A") action FilePage("auto")
 
-                    if config.has_quicksave:
-                        textbutton _("{#quick_page}Q") action FilePage("quick")
+                    #if config.has_quicksave:
+                    #    textbutton _("{#quick_page}Q") action FilePage("quick")
 
                     ## range(1, 10) gives the numbers from 1 to 9.
-                    for page in range(1, 10):
-                        textbutton "[page]" action FilePage(page)
+                    #for page in range(1, 10):
+                    #    textbutton "[page]" action FilePage(page)
 
-                    textbutton _(">") action FilePageNext()
+                    #textbutton _(">") action FilePageNext()
 
-                if config.has_sync:
-                    if CurrentScreenName() == "save":
-                        textbutton _("Upload Sync"):
-                            action UploadSync()
-                            xalign 0.5
-                    else:
-                        textbutton _("Download Sync"):
-                            action DownloadSync()
-                            xalign 0.5
+                #if config.has_sync:
+                #    if CurrentScreenName() == "save":
+                #        textbutton _("Upload Sync"):
+                #            action UploadSync()
+                #            xalign 0.5
+                #    else:
+                #        textbutton _("Download Sync"):
+                #            action DownloadSync()
+                #            xalign 0.5
 
 
 style page_label is gui_label
@@ -1123,14 +1123,6 @@ screen keyboard_help():
     hbox:
         label _("Tab")
         text _("Toggles dialogue skipping.")
-
-    hbox:
-        label _("Page Up")
-        text _("Rolls back to earlier dialogue.")
-
-    hbox:
-        label _("Page Down")
-        text _("Rolls forward to later dialogue.")
 
     hbox:
         label "H"

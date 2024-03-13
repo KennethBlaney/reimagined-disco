@@ -72,23 +72,23 @@ define gui.text_size = 44
 define gui.name_text_size = 60
 
 ## The size of text in the game's user interface.
-define gui.interface_text_size = 44
+define gui.interface_text_size = 64
 
 ## The size of labels in the game's user interface.
-define gui.label_text_size = 48
+define gui.label_text_size = 68
 
 ## The size of text on the notify screen.
-define gui.notify_text_size = 32
+define gui.notify_text_size = 44
 
 ## The size of the game's title.
-define gui.title_text_size = 100
+define gui.title_text_size = 200
 
 
 ## Main and Game Menus #########################################################
 
 ## The images used for the main and game menus.
-define gui.main_menu_background = "gui/main_menu.png"
-define gui.game_menu_background = "gui/game_menu.png"
+define gui.main_menu_background = "images/temple_interior.webp"
+define gui.game_menu_background = "images/stars.webp"
 
 
 ## Dialogue ####################################################################

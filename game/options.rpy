@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Arise Ye Elder God")
+define config.name = _("{font=font/Unquiet_Spirits.ttf}Awaken Ye Elder God")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -37,7 +37,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "arise_ye_elder_god"
+define build.name = "awaken_ye_elder_god"
 
 
 ## Sounds and music ############################################################
@@ -143,7 +143,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "arise_ye_elder_god-1709254032"
+define config.save_directory = "awaken_ye_elder_god-1709254032"
 
 
 ## Icon ########################################################################

@@ -28,7 +28,7 @@
     window auto hide
     scene cult_ritual with slow_fade:
         subpixel True
-        matrixtransform ScaleMatrix(1.2, 1.2, 1.0)*OffsetMatrix(150.0, 20.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+        matrixtransform ScaleMatrix(1.25, 1.25, 1.0)*OffsetMatrix(150.0, 20.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
         linear 30.00 matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*OffsetMatrix(-100.0, -20.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
     with Pause(1.10)
     window auto show
@@ -135,6 +135,8 @@ label non_mythos_ending:
     "As you look down at your form, you realize the decisions you've made about yourself have transformed you into... an ordinary [pd.animal]."
     $killed = 4-pd.investigators_remaining
     if killed == 0:
+        stop music fadeout 2.0
+        scene black with slow_fade
         return
     jump reward_runes
     return
@@ -146,6 +148,8 @@ label game_over:
     "Perhaps one day, your orbit will bring you close enough to Earth so you may have your revenge."
     $killed = 4-pd.investigators_remaining
     if killed == 0:
+        stop music fadeout 2.0
+        scene black with slow_fade
         return
     jump reward_runes
     return

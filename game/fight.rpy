@@ -1,7 +1,7 @@
 
 
 label fight_the_investigators:
-    scene monster_attack
+    scene monster_attack with slow_fade
     $ pd.compare_to_candidates()
     $ pd.set_qualities_from_elimination()
     $ pd.calculate_mythos()
@@ -12,8 +12,8 @@ label fight_the_investigators:
 
             "Fire my rocket launcher at them!":
                 "You fire your rocket launcher at the investigators killing them all."
-                show red with dissolve
                 play sound "killed.mp3"
+                show red with dissolve
                 "That was easy."
                 $pd.investigators_remaining -= 4
                 jump scene_choosing
@@ -30,19 +30,19 @@ label fight_the_investigators:
                 if pd.investigators_remaining == 4:
                     "You throw a pie at an investigator."
                     "It lands on their face with a horrible splat."
-                    show red with dissolve
                     play sound "killed.mp3"
+                    show red with dissolve
                     "The pie filling, acid of course, dissolves their head."
                 if pd.investigators_remaining == 3:
                     "You invite an investigator to smell your flower broach."
-                    show red with dissolve
                     play sound "killed.mp3"
+                    show red with dissolve
                     "Surprise! More acid!"
                 if pd.investigators_remaining == 2:
                     "You spin up some cotton candy and shoot it at the investigator."
                     "It clings to the investigator's body, smothering them."
-                    show red with dissolve
                     play sound "killed.mp3"
+                    show red with dissolve
                     "The investigator dies a claustophobic and horrible death."
                     ""
                     "Also, the cotton candy is acid."
@@ -54,8 +54,8 @@ label fight_the_investigators:
                     "Once so high up, the balloon pops and the investigator plummets to the ground, surely to their death."
                     "But wait... a swimming pool. If they can just land in the pool, everything will be fine."
                     "With a splash they land in the pool.{w}.. and immediately start dissolving."
-                    show red with dissolve
                     play sound "killed.mp3"
+                    show red with dissolve
                     "A sadistic clown laugh later, you pull back the label on the pool revealing a comically large sign than says 'ACID'."
                 $pd.investigators_remaining -= 1
                 jump scene_choosing
