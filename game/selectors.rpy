@@ -123,6 +123,7 @@ label claws_selector:
             else:
                 "You attempt to grab an investigator with your claws."
                 $pd.investigators_remaining -= 1
+                play sound "killed.mp3"
                 show red with dissolve
                 "Frozen with fear, the investigator stands no chance. You clamp around their neck and crush their windpipe."
                 "Others make motions to help, but are quickly demoralized as you pull and rip their friend in two."
@@ -139,6 +140,7 @@ label claws_selector:
             else:
                 "You spray your acid on the unsuspecting investigator."
                 $pd.investigators_remaining -= 1
+                play sound "killed.mp3"
                 show red with dissolve
                 "The rest react in horror as their friend is dissolved into a pile of protein rich goo and quickly run away."
                 $pd.set_quality("acid", True)
@@ -165,6 +167,7 @@ label elec_selector:
     menu:
         "They dare? Electrocute them ironically.":
             "Using your naturally generated electricity, you send a charge through the floor."
+            play sound "zap.mp3"
             "The cultists convulse in place. Their convulsing seems to become a sort of ritualistic dance to pay you tribute."
             $pd.set_quality("elec", True)
             jump scene_choosing
@@ -220,6 +223,7 @@ label tentacles_selector:
             $pd.set_revealed("tentacles", True)
             "You reach through the cavern and wrap around one of the investigators legs."
             "As you drag the investigator to the cave, you meet some resistance as the others try to save their friend."
+            play sound "killed.mp3"
             show red with dissolve
             "However, it is of no use. You are too strong for them and rip your victim from their hands."
             $pd.investigators_remaining -= 1
@@ -247,6 +251,7 @@ label spines_selector:
             $pd.set_revealed("spines", True)
             "You sense the foot falls of an investigator and time your spike perfectly to jut though their foot."
             "The investigator falls to the ground writhing in pain giving you the opportunity to impale them a second time through the torso."
+            play sound "killed.mp3"
             show red with dissolve
             "The other investigators shriek in fright and scatter into other rooms of the temple."
             $pd.investigators_remaining -= 1

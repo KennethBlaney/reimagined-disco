@@ -166,3 +166,4 @@ game/saves/
 game/cache/
 *.rpyc
 game/renpy-ActionEditor3-master/
+game/audio

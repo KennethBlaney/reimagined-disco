@@ -4,10 +4,14 @@
     $ pd = PlayerData()
     $ pd.reset_qualities()
     $ killed = 0
+    play sound "main_menu_start.mp3"
+    pause(.5)
+    play music "dread.mp3"
 
     # Set up premise
     $ preferences.text_cps = 15
     scene black
+    stop sound fadeout 1.5
     "You awaken!"
     $ preferences.text_cps = 150
     window auto hide
@@ -149,6 +153,7 @@ label game_over:
 label reward_runes:
     scene black with slow_fade
     "However, all is not lost."
+    stop music fadeout 2.0
     $runes = generate_runes(killed)
     if killed == 1:
         "You killed [killed] investigators and so have earned [killed] rune of the true name of the Great Old One."
@@ -165,6 +170,7 @@ label mixed_ending:
     "As you look at your form, you realize you are merely.{w}.. an ordinary [pd.animal], and no longer the eldritch monster you once were."
     scene black with slow_fade
     "However, all is not lost."
+    stop music fadeout 2.0
     "For killing all of the investigators you have earned 5 runes in the true name of the Great Old One."
     $runes = generate_runes(5)
     "The Great Old One's name includes the runes: [runes]"
@@ -185,6 +191,7 @@ label win:
         "If four of them are here, then there is only one left."
         "Jetting off into the water, you set course for the Southern Ocean."
         ""
+        stop music fadeout 2.0
         "Thank you for playing 'Arise Oh Elder God' and probably 'Sharktillary' as well.{w}\nThe End."
         return
 
@@ -217,6 +224,6 @@ label win:
             "You channel your power into the core of the Earth... this pitiful ball of wet dirt in a vast expanse of space."
             "Existing on Earth is hellish for but a moment as the planet splits apart."
             "Humans are extinct in a flash.{w}.. but on a cosmic scale, it is as if nothing happened at all."
-
+    stop music fadeout 2.0
     "Thank you for playing 'Arise Oh Elder God'.{w}\nThe End."
     return
