@@ -171,10 +171,7 @@ label mixed_ending:
     return
 
 label win:
-    scene old_one_awakens:
-        subpixel True
-        matrixtransform ScaleMatrix(1.1, 1.1, 1.0)*OffsetMatrix(0.0, 0.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
-        linear 30.00 matrixtransform ScaleMatrix(1, 1, 1.0)*OffsetMatrix(0.0, 0.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+    scene old_one_awakens with slow_fade
     if pd.is_an_evil_clown:
         "You laugh manically and honk your large clown nose."
     "As the last investigator dies, so does Earth's last hope."
