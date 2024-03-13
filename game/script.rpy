@@ -106,7 +106,7 @@ label scene_choosing:
     $ pd.set_qualities_from_elimination()
     $ pd.calculate_mythos()
     scene temple_interior with fade
-    call show_game_status_screen
+    call show_game_status_screen from _call_show_game_status_screen
 
     $ next_scene = scene_chooser(pd)
     jump expression next_scene

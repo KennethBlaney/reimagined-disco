@@ -165,5 +165,8 @@ log.txt
 game/saves/
 game/cache/
 *.rpyc
+game/tl/None/*.rpymc
+*.rpy.bak
 game/renpy-ActionEditor3-master/
 game/audio
+project.json
