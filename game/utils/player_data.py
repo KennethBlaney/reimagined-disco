@@ -385,10 +385,10 @@ class PlayerData:
 
     def art_check(self):
         files = set(os.listdir(os.path.join("game", "images", "real_animals")))
-        missing =[]
+        missing = []
         for candidate in self.start_candidates:
             os.listdir(os.path.join("game", "images", "real_animals"))
-            name = f"{candidate.get_quality("name")}.jpg".replace(" ", "_")
+            name = f"{candidate.get_quality('name')}.jpg".replace(" ", "_")
             if name not in files:
                 missing.append(name)
         pprint(missing)
