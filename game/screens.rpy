@@ -298,7 +298,6 @@ screen navigation():
         if main_menu:
 
             textbutton _("Start"):
-                activate_sound "main_menu_start.mp3"
                 action Start()
 
         else:

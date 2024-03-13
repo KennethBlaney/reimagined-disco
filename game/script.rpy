@@ -4,12 +4,14 @@
     $ pd = PlayerData()
     $ pd.reset_qualities()
     $ killed = 0
-
+    play sound "main_menu_start.mp3"
+    pause(.5)
     play music "dread.mp3"
 
     # Set up premise
     $ preferences.text_cps = 15
     scene black
+    stop sound fadeout 1.5
     "You awaken!"
     $ preferences.text_cps = 150
     window auto hide
@@ -151,14 +153,13 @@ label game_over:
 label reward_runes:
     scene black with slow_fade
     "However, all is not lost."
+    stop music fadeout 2.0
     $runes = generate_runes(killed)
     if killed == 1:
         "You killed [killed] investigators and so have earned [killed] rune of the true name of the Great Old One."
-        stop music fadeout 2.0
         "The Great Old One's name includes the rune: [runes]"
     else:
         "You killed [killed] investigators and so have earned [killed] runes of the true name of the Great Old One."
-        stop music fadeout 2.0
         "The Great Old One's name includes the runes: [runes]"
     return
 
@@ -169,9 +170,9 @@ label mixed_ending:
     "As you look at your form, you realize you are merely.{w}.. an ordinary [pd.animal], and no longer the eldritch monster you once were."
     scene black with slow_fade
     "However, all is not lost."
+    stop music fadeout 2.0
     "For killing all of the investigators you have earned 5 runes in the true name of the Great Old One."
     $runes = generate_runes(5)
-    stop music fadeout 2.0
     "The Great Old One's name includes the runes: [runes]"
     return
 
