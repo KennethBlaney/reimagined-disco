@@ -598,9 +598,10 @@ screen credits():
 
             label "[config.name!t]"
             text _("Version [config.version!t]\n")
-            text _("Created by Kenneth Blaney")
+            text _("All work not otherwise credited by Kenneth Blaney")
+            text _("This work released under CC BY-SA 4.0")
             text _("")
-            text _("Photography Art Credits for CC-BY Photos")
+            text _("Animal Photography Credits")
             text _("\'The Aurora Named STEVE\' image used in accordance with NASA image use policy.")
             text _("\'Giant Clam\' image by Charles J. Sharp")
             text _("\'Cuttlefish\' image by Nick Hobgood")
@@ -644,6 +645,19 @@ screen credits():
             text _("\'Sand Dollar\' image by Frédéric Ducarme")
             text _("\'Sea Snake\' image by jon hanson ")
             text _("\'Manta Ray\' image by Shiyam ElkCloner")
+            text _("")
+            text _("Investigator Photography Credits")
+            text _("\'Self-portrait, walking away\' image by Stuart Heath")
+            text _("\'Woman Wearing Black\' image in Public Domain")
+            text _("\'3rd MLR 10-kilometer Sustainment Hike\' image from United States Marine Corps")
+            text _("\'Woman Walking Away\' image by flickr user jillllybean")
+            text _("")
+            text _("Locations Art and Photography Credits")
+            text _("\'Rouen Cathedral, France\' from France Tourism Agency (modified)")
+            text _("\'Basilica Sant'Ambrogio\' image by Idéfix")
+            text _("\'Stonehenge\' image by Wigulf~commonswiki")
+            text _("\'Creepy Church\'by Zdenek Sasek via iStock")
+            text _("\'Monster Attack\' from Adobe Stock Images")
 
 
 

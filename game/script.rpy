@@ -3,6 +3,7 @@
     $ from utils import PlayerData, scene_chooser, generate_runes
     $ pd = PlayerData()
     $ pd.reset_qualities()
+    $ killed = 0
 
     # Set up premise
     $ preferences.text_cps = 15
@@ -56,7 +57,33 @@
     "[pd.get_quality('name')], guard your mythos power and don't let yourself be defined by anything."
 
     # Set up danger
-    scene investigators with slow_fade
+    scene black
+    show investigators with dissolve:
+        subpixel True
+        matrixtransform ScaleMatrix(1.1, 1.1, 1.0)*OffsetMatrix(-30.0, 50.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+        linear 30.00 matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*OffsetMatrix(10.0, -75.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+    show investigator_3 with dissolve:
+        anchor (0.5, 1.0) pos (0.75, 1440)
+        subpixel True
+        matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*OffsetMatrix(0.0, 0.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+        linear 30.00 matrixtransform ScaleMatrix(.75, .75, 1.0)*OffsetMatrix(0.0, 25.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+    show investigator_2 with dissolve:
+        anchor (0.5, 1.0) pos (0.6, 1440)
+        subpixel True
+        matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*OffsetMatrix(0.0, 0.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+        linear 30.00 matrixtransform ScaleMatrix(.75, .75, 1.0)*OffsetMatrix(50.0, 200.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+    show investigator_1 with dissolve:
+        anchor (0.5, 1.0) pos (0.5, 1440)
+        subpixel True
+        matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*OffsetMatrix(0.0, 0.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+        linear 30.00 matrixtransform ScaleMatrix(.75, .75, 1.0)*OffsetMatrix(75.0, 300.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+    show investigator_4 with dissolve:
+        anchor (0.5, 1.0) pos (0.85, 1440)
+        subpixel True
+        matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*OffsetMatrix(0.0, 0.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+        linear 30.00 matrixtransform ScaleMatrix(.75, .75, 1.0)*OffsetMatrix(90.0, 350.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+    with Pause(5.10)
+
     "Unfortunately, there is a group of investigators who will stop at nothing to learn your secrets, discover your weaknesses and remove you from this world."
     "Protect yourself from them so that you may rise from your palace under the waves and dominate the Earth."
     jump scene_choosing
@@ -99,7 +126,7 @@ label non_mythos_ending:
     "However, just before you drift off to sleep, the investigators enter the room."
     "You feel powerless to stop them for the first time, but they simply take notice of you and move on."
     $animal = pd.animal.replace(" ", "_")
-    show expression animal with fade:
+    show expression animal with dissolve:
         pos (0.5, 0.5) anchor (0.5, 0.5)
     "As you look down at your form, you realize the decisions you've made about yourself have transformed you into... an ordinary [pd.animal]."
     $killed = 4-pd.investigators_remaining
@@ -113,12 +140,14 @@ label game_over:
     "Banished from Earth, you float aimlessly in the black space between the stars."
     "Try as you might, you are unable to push or pull yourself in any direction."
     "Perhaps one day, your orbit will bring you close enough to Earth so you may have your revenge."
+    $killed = 4-pd.investigators_remaining
     if killed == 0:
         return
     jump reward_runes
     return
 
 label reward_runes:
+    scene black with slow_fade
     "However, all is not lost."
     $runes = generate_runes(killed)
     if killed == 1:
@@ -134,6 +163,7 @@ label mixed_ending:
     "As the last investigator dies at your hands, you feel tired."
     "Your mythos power is gone."
     "As you look at your form, you realize you are merely.{w}.. an ordinary [pd.animal], and no longer the eldritch monster you once were."
+    scene black with slow_fade
     "However, all is not lost."
     "For killing all of the investigators you have earned 5 runes in the true name of the Great Old One."
     $runes = generate_runes(5)
@@ -141,6 +171,10 @@ label mixed_ending:
     return
 
 label win:
+    scene old_one_awakens:
+        subpixel True
+        matrixtransform ScaleMatrix(1.1, 1.1, 1.0)*OffsetMatrix(0.0, 0.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
+        linear 30.00 matrixtransform ScaleMatrix(1, 1, 1.0)*OffsetMatrix(0.0, 0.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)*OffsetMatrix(0.0, 0.0, 0.0)
     if pd.is_an_evil_clown:
         "You laugh manically and honk your large clown nose."
     "As the last investigator dies, so does Earth's last hope."

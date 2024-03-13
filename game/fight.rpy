@@ -12,6 +12,7 @@ label fight_the_investigators:
 
             "Fire my rocket launcher at them!":
                 "You fire your rocket launcher at the investigators killing them all."
+                show red with dissolve                    
                 "That was easy."
                 $pd.investigators_remaining -= 4
                 jump scene_choosing
@@ -28,13 +29,16 @@ label fight_the_investigators:
                 if pd.investigators_remaining == 4:
                     "You throw a pie at an investigator."
                     "It lands on their face with a horrible splat."
+                    show red with dissolve                        
                     "The pie filling, acid of course, dissolves their head."
                 if pd.investigators_remaining == 3:
                     "You invite an investigator to smell your flower broach."
+                    show red with dissolve                        
                     "Surprise! More acid!"
                 if pd.investigators_remaining == 2:
                     "You spin up some cotton candy and shoot it at the investigator."
                     "It clings to the investigator's body, smothering them."
+                    show red with dissolve                        
                     "The investigator dies a claustophobic and horrible death."
                     ""
                     "Also, the cotton candy is acid."
@@ -46,6 +50,7 @@ label fight_the_investigators:
                     "Once so high up, the balloon pops and the investigator plummets to the ground, surely to their death."
                     "But wait... a swimming pool. If they can just land in the pool, everything will be fine."
                     "With a splash they land in the pool.{w}.. and immediately start dissolving."
+                    show red with dissolve                        
                     "A sadistic clown laugh later, you pull back the label on the pool revealing a comically large sign than says 'ACID'."
                 $pd.investigators_remaining -= 1
                 jump scene_choosing
@@ -65,6 +70,7 @@ label fight_the_investigators:
             else:
                 "You lunge at the investigator crunching into them with your deadly teeth."
                 $pd.investigators_remaining -= 1
+                show red with dissolve                        
                 "The investigator quickly bleeds out and dies as the rest scatter to escape you."
                 $pd.set_quality("teeth", True)
                 $pd.set_revealed("teeth", True)
@@ -79,6 +85,7 @@ label fight_the_investigators:
             else:
                 "You manage to inject your venom into the investigator's veins."
                 $pd.investigators_remaining -= 1
+                show red with dissolve                        
                 "They start convulsing and foaming from the mouth. The rest first make motions to save their friend, but retreat to avoid meeting a similar fate."
                 $pd.set_quality("venom", True)
                 $pd.set_revealed("venom", True)
@@ -94,6 +101,7 @@ label fight_the_investigators:
             else:
                 $pd.investigators_remaining -= 1
                 "Frozen with fear, the investigator stands no chance. You clamp around their neck and crush their windpipe."
+                show red with dissolve                        
                 "Others make motions to help, but are quickly demoralized as you pull and rip their friend in two."
                 $pd.set_quality("claws", True)
                 $pd.set_revealed("claws", True)
@@ -107,6 +115,7 @@ label fight_the_investigators:
                 jump game_over
             else:
                 "The lead investigator convulses in place as the others quickly back away."
+                show red with dissolve                        
                 "Smoke rises from the investigator as their flesh burns. The others, repulsed by the smell, scatter."
                 $pd.investigators_remaining -= 1
                 $pd.set_quality("elec", True)
@@ -121,6 +130,7 @@ label fight_the_investigators:
                 jump game_over
             else:
                 $pd.investigators_remaining -= 1
+                show red with dissolve                        
                 "The rest react in horror as their friend is dissolved into a pile of protein rich goo and quickly run away."
                 $pd.set_quality("acid", True)
                 $pd.set_revealed("acid", True)
@@ -134,6 +144,7 @@ label fight_the_investigators:
                 jump game_over
             else:
                 "As you wrap around their neck you pull upwards, lifting the investigator off their feet."
+                show red with dissolve                        
                 "The investigator struggles making a gurgling sound followed by a snap."
                 "Their lifeless body slumps to the floor as you drop them."
                 "The other investigators scramble to escape your grasp."
@@ -153,6 +164,7 @@ label fight_the_investigators:
             else:
 
                 "The investigator falls to the ground writhing in pain giving you the opportunity to impale them a second time through the torso."
+                show red with dissolve                        
                 "The other investigators shriek in fright and scatter into other rooms of the temple."
                 $pd.investigators_remaining -= 1
                 $pd.set_quality("spines", True)
